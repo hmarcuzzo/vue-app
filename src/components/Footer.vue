@@ -3,13 +3,13 @@ const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="footer bg-gray-800 text-white py-6 mt-auto">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <p class="text-sm">{{ currentYear }} NexyTech. All rights reserved.</p>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__content">
+        <div class="footer__copyright">
+          <p class="footer__text">{{ currentYear }} NexyTech. All rights reserved.</p>
         </div>
-        <div class="flex space-x-4">
+        <div class="footer__links">
           <a href="#" class="footer__link">Privacy Policy</a>
           <a href="#" class="footer__link">Terms of Service</a>
           <a href="#" class="footer__link">Contact</a>
@@ -19,18 +19,37 @@ const currentYear = new Date().getFullYear();
   </footer>
 </template>
 
-<style scoped lang="scss">
-@reference "@/assets/css/index.css";
+<style scoped>
+@import "@/assets/css/index.css";
 
 .footer {
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  @apply bg-gray-800 text-white py-6 mt-auto shadow-[0_-2px_4px_rgba(0,0,0,0.1)];
+}
 
-  &__link {
-    @apply transition-colors;
+.footer__container {
+  @apply container mx-auto px-4;
+}
 
-    &:hover {
-      @apply text-gray-300;
-    }
-  }
+.footer__content {
+  @apply flex flex-col md:flex-row justify-between items-center;
+}
+
+.footer__copyright {
+  @apply mb-4 md:mb-0;
+}
+
+.footer__text {
+  @apply text-sm;
+}
+
+.footer__links {
+  @apply flex space-x-4;
+}
+
+.footer__link {
+  @apply transition-colors
+      duration-100
+      ease-in-out
+      hover:text-gray-300;
 }
 </style>
