@@ -1,0 +1,34 @@
+:root {
+  // Primary Colors
+  //--color-primary: #219EBC;    // Main brand color
+  //--color-primary-light: #8ECAE6;  // Light variant
+  //--color-primary-dark: #023047;   // Dark variant
+
+  // Accent Colors
+  //--color-accent: #FFB703;
+  //--color-accent-dark: #FB8500;
+
+  // Grey Colors
+  --color-grey: #282828;   // Default grey color
+
+  // Text Colors
+  --color-text-primary: var(--color-grey);
+  --color-text-light: #FFFFFF;
+  --color-text-muted: rgba(2, 48, 71, 0.7);  // Using primary-dark with opacity
+
+  // Background Colors
+  //--color-bg-primary: #FFFFFF;
+  //--color-bg-secondary: var(--color-primary-light);
+  //--color-bg-dark: var(--color-primary-dark);
+  --color-bg-grey: var(--color-grey);  // Default grey color for backgrounds
+
+  // Border Colors
+  //--color-border: rgba(2, 48, 71, 0.1);  // Using primary-dark with opacity
+  //--color-border-dark: rgba(2, 48, 71, 0.2);  // Using primary-dark with opacity
+
+  // Status Colors
+  //--color-success: #4CAF50;
+  //--color-warning: var(--color-accent);
+  //--color-error: #FF5252;
+  //--color-info: var(--color-primary);
+}

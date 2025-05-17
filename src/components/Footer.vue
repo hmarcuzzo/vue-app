@@ -18,15 +18,12 @@ const currentYear = new Date().getFullYear();
 </template>
 
 <style lang="scss" scoped>
-$footer-bg: #1f2937;
-$footer-text: white;
-$footer-hover: #fcd34d;
 $container-width: 1200px;
 $spacing-base: 1rem;
 
 .footer {
-  background-color: $footer-bg;
-  color: $footer-text;
+  background-color: var(--color-bg-grey);
+  color: var(--color-text-light);
   padding: $spacing-base * 1.5 0;
   margin-top: auto;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -67,11 +64,12 @@ $spacing-base: 1rem;
     gap: $spacing-base;
 
     a {
-      transition: color 0.1s ease-in-out;
-      color: $footer-text;
+      transition: all 0.1s ease-in-out;
+      color: var(--color-text-light);
+      text-decoration: none;
 
       &:hover {
-        color: $footer-hover;
+        text-decoration: underline;
       }
     }
   }

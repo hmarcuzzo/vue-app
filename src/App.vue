@@ -11,6 +11,6 @@ import Footer from "@/components/Footer.vue";
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "@/assets/_index" as *;
 </style>
