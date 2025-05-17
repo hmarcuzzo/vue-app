@@ -22,6 +22,8 @@ $container-width: 1200px;
 $spacing-base: 1rem;
 
 .footer {
+  font-size: var(--font-size-lg);
+
   background-color: var(--color-bg-grey);
   color: var(--color-text-light);
   padding: $spacing-base * 1.5 0;
@@ -52,7 +54,6 @@ $spacing-base: 1rem;
 
   .copyright {
     margin-bottom: $spacing-base;
-    font-size: 0.875rem;
 
     @media (min-width: $breakpoint-desktop) {
       margin-bottom: 0;
