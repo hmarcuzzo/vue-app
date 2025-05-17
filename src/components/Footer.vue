@@ -22,7 +22,7 @@ $container-width: 1200px;
 $spacing-base: 1rem;
 
 .footer {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
 
   background-color: var(--color-bg-grey);
   color: var(--color-text-light);
