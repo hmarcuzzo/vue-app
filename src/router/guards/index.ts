@@ -1,1 +1,1 @@
-export * from "./auth.guard.js";
+export * from "./auth.guard.ts";
