@@ -4,52 +4,71 @@ const currentYear = new Date().getFullYear();
 
 <template>
   <footer class="footer">
-    <div class="footer__container">
-      <div class="footer__content">
-        <div class="footer__copyright">
-          <p class="footer__text">{{ currentYear }} NexyTech. All rights reserved.</p>
-        </div>
-        <div class="footer__links">
-          <a href="#" class="footer__link">Privacy Policy</a>
-          <a href="#" class="footer__link">Terms of Service</a>
-          <a href="#" class="footer__link">Contact</a>
-        </div>
+    <div class="container">
+      <div class="content">
+        <p class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</p>
+        <nav class="links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Contact</a>
+        </nav>
       </div>
     </div>
   </footer>
 </template>
 
-<style scoped>
-@import "@/assets/css/index.css";
+<style lang="scss" scoped>
+$footer-bg: #1f2937;
+$footer-text: white;
+$footer-hover: #fcd34d;
+$container-width: 1200px;
+$spacing-base: 1rem;
 
 .footer {
-  @apply bg-gray-800 text-white py-6 mt-auto shadow-[0_-2px_4px_rgba(0,0,0,0.1)];
-}
+  background-color: $footer-bg;
+  color: $footer-text;
+  padding: $spacing-base * 1.5 0;
+  margin-top: auto;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 
-.footer__container {
-  @apply container mx-auto px-4;
-}
+  .container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 0 $spacing-base;
+  }
 
-.footer__content {
-  @apply flex flex-col md:flex-row justify-between items-center;
-}
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-.footer__copyright {
-  @apply mb-4 md:mb-0;
-}
+    @media (min-width: $breakpoint-desktop) {
+      flex-direction: row;
+    }
+  }
 
-.footer__text {
-  @apply text-sm;
-}
+  .copyright {
+    margin-bottom: $spacing-base;
+    font-size: 0.875rem;
 
-.footer__links {
-  @apply flex space-x-4;
-}
+    @media (min-width: $breakpoint-desktop) {
+      margin-bottom: 0;
+    }
+  }
 
-.footer__link {
-  @apply transition-colors
-      duration-100
-      ease-in-out
-      hover:text-gray-300;
+  .links {
+    display: flex;
+    gap: $spacing-base;
+
+    a {
+      transition: color 0.1s ease-in-out;
+      color: $footer-text;
+
+      &:hover {
+        color: $footer-hover;
+      }
+    }
+  }
 }
 </style>
