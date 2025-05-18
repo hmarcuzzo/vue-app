@@ -27,12 +27,8 @@ $spacing-base: 1rem;
   background-color: var(--color-bg-grey);
   color: var(--color-text-light);
   padding: $spacing-base * 1.5 0;
-  margin-top: auto;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
 
   .container {
     width: 100%;

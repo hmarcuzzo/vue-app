@@ -3,8 +3,8 @@ import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
-    <main class="flex-grow">
+  <div class="app-container">
+    <main>
       <router-view />
     </main>
     <Footer />
@@ -13,4 +13,14 @@ import Footer from "@/components/Footer.vue";
 
 <style lang="scss">
 @use "@/assets/_index" as *;
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
 </style>
