@@ -1,9 +1,148 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import { reactive } from "vue";
+
+interface LoginForm {
+  username: string;
+  password: string;
+  remember: boolean;
+}
+
+const loginForm = reactive<LoginForm>({
+  username: "",
+  password: "",
+  remember: false,
+});
+const onFinish = (values: any) => {
+  console.log("Success:", values);
+};
+
+const onFinishFailed = (errorInfo: any) => {
+  console.log("Failed:", errorInfo);
+};
+</script>
 
 <template>
-  <div>
-    <h1 class="text-3xl font-bold underline bg-yellow-300">Hello Login!</h1>
+  <div class="login-container">
+    <a-card class="login-card">
+      <p class="title">Sign in</p>
+      <a-form :model="loginForm" name="basic" autocomplete="on" @finish="onFinish" @finishFailed="onFinishFailed">
+        <div class="login-input">
+          <a-form-item name="username" :rules="[{ required: true, message: 'Please input your username!' }]">
+            <a-input v-model:value="loginForm.username" placeholder="Username">
+              <template #prefix>
+                <UserOutlined class="site-form-item-icon" />
+              </template>
+            </a-input>
+          </a-form-item>
+
+          <a-form-item name="password" :rules="[{ required: true, message: 'Please input your password!' }]">
+            <a-input-password v-model:value="loginForm.password" placeholder="Password">
+              <template #prefix>
+                <LockOutlined class="site-form-item-icon" />
+              </template>
+            </a-input-password>
+          </a-form-item>
+        </div>
+
+        <div class="options-row">
+          <a-form-item name="remember" class="remember-item">
+            <a-checkbox v-model:checked="loginForm.remember">Remember me</a-checkbox>
+          </a-form-item>
+
+          <a-button type="link" class="forgot-password-btn">Forgot your password?</a-button>
+        </div>
+
+        <div class="sign-in-container">
+          <a-form-item class="sign-in-item">
+            <a-button class="sign-in-btn" type="primary" html-type="submit">SIGN IN</a-button>
+          </a-form-item>
+        </div>
+      </a-form>
+    </a-card>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 200px 0 40px;
+}
+
+.login-card {
+  width: 700px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+
+  .title {
+    font-size: calc(var(--font-size-2xl) * 1.3);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .login-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    :deep(.ant-form-item) {
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    :deep(.ant-input) {
+      height: 40px;
+    }
+  }
+
+  .options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 24px;
+
+    .remember-item {
+      margin-bottom: 0;
+    }
+
+    .forgot-password-btn {
+      color: var(--primary-color);
+      font-size: var(--font-size-sm);
+      padding: 0;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .sign-in-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    .sign-in-item {
+      margin-bottom: 0;
+      width: 100%;
+
+      .sign-in-btn {
+        width: 100%;
+        height: 40px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+</style>
