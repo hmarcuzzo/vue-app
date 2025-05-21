@@ -53,7 +53,7 @@ const onFinishFailed = (errorInfo: any) => {
           <a-button type="link" class="forgot-password-btn">Forgot your password?</a-button>
         </div>
 
-        <div class="sign-in-container">
+        <div class="sign-in-btn-container">
           <a-form-item class="sign-in-item">
             <a-button class="sign-in-btn" type="primary" html-type="submit">SIGN IN</a-button>
           </a-form-item>
@@ -68,14 +68,22 @@ const onFinishFailed = (errorInfo: any) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  margin: 200px 0 40px;
+  min-height: 100dvh;
 }
 
+$sign-in-max-width: 400px;
+
 .login-card {
-  width: 700px;
+  width: 100%;
+  margin-inline: 20px;
+  padding-block: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 40px;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  @media (min-width: $breakpoint-desktop) {
+    max-width: calc($sign-in-max-width + 300px);
+  }
 
   .title {
     font-size: calc(var(--font-size-2xl) * 1.3);
@@ -91,7 +99,7 @@ const onFinishFailed = (errorInfo: any) => {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 400px;
+    max-width: $sign-in-max-width;
     margin: 0 auto;
 
     :deep(.ant-form-item) {
@@ -109,7 +117,7 @@ const onFinishFailed = (errorInfo: any) => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 400px;
+    max-width: $sign-in-max-width;
     margin: 0 auto 24px;
 
     .remember-item {
@@ -117,19 +125,14 @@ const onFinishFailed = (errorInfo: any) => {
     }
 
     .forgot-password-btn {
-      color: var(--primary-color);
       font-size: var(--font-size-sm);
       padding: 0;
-      
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 
-  .sign-in-container {
+  .sign-in-btn-container {
     width: 100%;
-    max-width: 400px;
+    max-width: $sign-in-max-width;
     margin: 0 auto;
 
     .sign-in-item {
@@ -140,7 +143,7 @@ const onFinishFailed = (errorInfo: any) => {
         width: 100%;
         height: 40px;
         border-radius: 20px;
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
       }
     }
   }
