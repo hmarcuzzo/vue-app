@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import Footer from "@/components/Footer.vue";
+import { themeConfig } from "@/config/theme.config.ts";
 </script>
 
 <template>
-  <div class="app-container">
-    <main>
-      <router-view />
-    </main>
-    <Footer />
-  </div>
+  <a-config-provider :theme="themeConfig">
+    <div class="app-container">
+      <main>
+        <router-view />
+      </main>
+      <Footer />
+    </div>
+  </a-config-provider>
 </template>
 
 <style lang="scss">
