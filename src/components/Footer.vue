@@ -6,11 +6,11 @@ const currentYear = new Date().getFullYear();
   <footer class="footer">
     <div class="container">
       <div class="content">
-        <p class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</p>
+        <a-typography-text class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</a-typography-text>
         <nav class="links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Contact</a>
+          <a-typography-link href="#" target="_blank">Privacy Policy</a-typography-link>
+          <a-typography-link href="#" target="_blank">Terms of Service</a-typography-link>
+          <a-typography-link href="#" target="_blank">Contact</a-typography-link>
         </nav>
       </div>
     </div>
@@ -22,13 +22,15 @@ $container-width: 1200px;
 $spacing-base: 1rem;
 
 .footer {
-  font-size: var(--font-size-base);
-
   background-color: var(--color-bg-grey);
-  color: var(--color-text-light);
   padding: $spacing-base * 1.5 0;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+
+  span,
+  a {
+    color: var(--color-text-light);
+  }
 
   .container {
     width: 100%;
@@ -62,7 +64,6 @@ $spacing-base: 1rem;
 
     a {
       transition: all 0.1s ease-in-out;
-      color: var(--color-text-light);
       text-decoration: none;
 
       &:hover {
