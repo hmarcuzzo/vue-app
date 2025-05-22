@@ -64,86 +64,83 @@ const onFinishFailed = (errorInfo: any) => {
 </template>
 
 <style scoped lang="scss">
+$sign-in-max-width: 400px;
+
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100dvh;
-}
 
-$sign-in-max-width: 400px;
-
-.login-card {
-  width: 100%;
-  margin-inline: 20px;
-  padding-block: 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  box-sizing: border-box;
-
-  @media (min-width: $breakpoint-desktop) {
+  .login-card {
+    width: 100%;
     max-width: calc($sign-in-max-width + 300px);
-  }
+    margin-inline: 20px;
+    padding-block: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-sizing: border-box;
 
-  .title {
-    font-size: calc(var(--font-size-2xl) * 1.3);
-    font-weight: var(--font-weight-bold);
-    text-align: center;
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .login-input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: $sign-in-max-width;
-    margin: 0 auto;
-
-    :deep(.ant-form-item) {
+    .title {
+      font-size: calc(var(--font-size-2xl) * 1.3);
+      font-weight: var(--font-weight-bold);
+      text-align: center;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
     }
 
-    :deep(.ant-input) {
-      height: 40px;
-    }
-  }
-
-  .options-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: $sign-in-max-width;
-    margin: 0 auto 24px;
-
-    .remember-item {
-      margin-bottom: 0;
-    }
-
-    .forgot-password-btn {
-      font-size: var(--font-size-sm);
-      padding: 0;
-    }
-  }
-
-  .sign-in-btn-container {
-    width: 100%;
-    max-width: $sign-in-max-width;
-    margin: 0 auto;
-
-    .sign-in-item {
-      margin-bottom: 0;
+    .login-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 100%;
+      max-width: $sign-in-max-width;
+      margin: 0 auto;
 
-      .sign-in-btn {
+      :deep(.ant-form-item) {
         width: 100%;
+        margin-bottom: 24px;
+      }
+
+      :deep(.ant-input) {
         height: 40px;
-        border-radius: 20px;
-        font-weight: var(--font-weight-semibold);
+      }
+    }
+
+    .options-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: $sign-in-max-width;
+      margin: 0 auto 24px;
+
+      .remember-item {
+        margin-bottom: 0;
+      }
+
+      .forgot-password-btn {
+        font-size: var(--font-size-sm);
+        padding: 0;
+      }
+    }
+
+    .sign-in-btn-container {
+      width: 100%;
+      max-width: $sign-in-max-width;
+      margin: 0 auto;
+
+      .sign-in-item {
+        margin-bottom: 0;
+        width: 100%;
+
+        .sign-in-btn {
+          width: 100%;
+          height: 40px;
+          border-radius: 20px;
+          font-weight: var(--font-weight-semibold);
+        }
       }
     }
   }
