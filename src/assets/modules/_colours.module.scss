@@ -1,0 +1,30 @@
+@use "@/assets/partials/colours" as c;
+
+// Exporting colors for use in TypeScript
+:export {
+  colorPrimary: c.$primary;
+  colorPrimaryLight: c.$primary-light;
+  colorPrimaryDark: c.$primary-dark;
+
+  colorAccent: c.$accent;
+  colorAccentDark: c.$accent-dark;
+
+  colorGrey: c.$grey;
+
+  colorTextPrimary: c.$text-primary;
+  colorTextLight: c.$text-light;
+  colorTextMuted: c.$text-muted;
+
+  colorBgPrimary: c.$bg-primary;
+  colorBgSecondary: c.$bg-secondary;
+  colorBgDark: c.$bg-dark;
+  colorBgGrey: c.$bg-grey;
+
+  colorBorder: c.$border;
+  colorBorderDark: c.$border-dark;
+
+  colorSuccess: c.$success;
+  colorWarning: c.$warning;
+  colorError: c.$error;
+  colorInfo: c.$info;
+}

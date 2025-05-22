@@ -1,0 +1,5 @@
+@use "@/assets/partials/typography" as t;
+
+:export {
+  fontFamily: t.$family-base;
+}
