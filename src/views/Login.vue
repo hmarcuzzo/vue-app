@@ -25,7 +25,7 @@ const onFinishFailed = (errorInfo: any) => {
 <template>
   <div class="login-container">
     <a-card class="login-card">
-      <p class="title">Sign in</p>
+      <a-typography-title class="title">Sign in</a-typography-title>
       <a-form :model="loginForm" name="basic" autocomplete="on" @finish="onFinish" @finishFailed="onFinishFailed">
         <div class="login-input">
           <a-form-item name="username" :rules="[{ required: true, message: 'Please input your username!' }]">
@@ -82,7 +82,6 @@ $sign-in-max-width: 400px;
     box-sizing: border-box;
 
     .title {
-      font-size: calc(var(--font-size-2xl) * 1.3);
       font-weight: var(--font-weight-bold);
       text-align: center;
       width: 100%;
