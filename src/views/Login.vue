@@ -91,7 +91,9 @@ const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
 
         <div class="sign-in-btn-container">
           <a-form-item class="sign-in-item">
-            <a-button class="sign-in-btn" type="primary" html-type="submit" :loading="isLoading"> SIGN IN </a-button>
+            <a-button class="sign-in-btn" type="primary" html-type="submit" :loading="isLoading" shape="round">
+              SIGN IN
+            </a-button>
           </a-form-item>
         </div>
       </a-form>
@@ -183,7 +185,6 @@ $sign-in-max-width: 400px;
       .sign-in-btn {
         width: 100%;
         height: 40px;
-        border-radius: 20px;
         font-weight: var(--font-weight-semibold);
       }
     }
