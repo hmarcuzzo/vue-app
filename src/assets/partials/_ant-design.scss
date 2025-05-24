@@ -1,0 +1,5 @@
+@use './variables' as *;
+
+.ant-alert {
+  border-radius: $border-radius-md;
+}
