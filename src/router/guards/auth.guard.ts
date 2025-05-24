@@ -1,6 +1,6 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
-import { RoutesName } from "@/enums/routes.enum.js";
+import { RoutesName } from "@/core/enums/routes.enum.js";
 
 export const authGuard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);

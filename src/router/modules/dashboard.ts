@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { RoutesName } from "@/enums/routes.enum.ts";
+import { RoutesName } from "@/core/enums/routes.enum.ts";
 
 export const dashboardRoutes: RouteRecordRaw[] = [
   {

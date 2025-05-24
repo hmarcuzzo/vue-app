@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Footer from "@/components/Footer.vue";
-import { themeConfig } from "@/config/theme.config.ts";
+import { themeConfig } from "@/core/config/theme.config.ts";
 </script>
 
 <template>

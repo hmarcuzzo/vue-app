@@ -2,7 +2,7 @@
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { reactive } from "vue";
 
-import type { ValidateErrorEntity } from "@/interfaces/form";
+import type { ValidateErrorEntity } from "@/core/types/form.type";
 
 interface LoginForm {
   username: string;
