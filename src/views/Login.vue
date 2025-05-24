@@ -18,9 +18,11 @@ const loginForm = reactive<LoginForm>({
 });
 
 const loginError = ref<string>("");
+const isLoading = ref<boolean>(false);
 
 const onFinish = async (values: LoginForm) => {
   try {
+    isLoading.value = true;
     // Mock API call
     await new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -38,6 +40,8 @@ const onFinish = async (values: LoginForm) => {
   } catch {
     loginError.value = "Invalid username or password";
     scrollIntoView(document.querySelector(".login-error"));
+  } finally {
+    isLoading.value = false;
   }
 };
 
@@ -87,7 +91,7 @@ const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
 
         <div class="sign-in-btn-container">
           <a-form-item class="sign-in-item">
-            <a-button class="sign-in-btn" type="primary" html-type="submit">SIGN IN</a-button>
+            <a-button class="sign-in-btn" type="primary" html-type="submit" :loading="isLoading"> SIGN IN </a-button>
           </a-form-item>
         </div>
       </a-form>
