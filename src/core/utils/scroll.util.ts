@@ -5,9 +5,9 @@
  */
 export const scrollIntoView = (
   element: Element | null,
-  options: ScrollIntoViewOptions = { behavior: "smooth", block: "center" }
+  options: ScrollIntoViewOptions = { behavior: "smooth", block: "center" },
 ): void => {
   if (element) {
     element.scrollIntoView(options);
   }
-}; 
+};
