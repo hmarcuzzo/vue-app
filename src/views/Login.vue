@@ -2,6 +2,8 @@
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { reactive } from "vue";
 
+import type { ValidateErrorEntity } from "@/interfaces/form";
+
 interface LoginForm {
   username: string;
   password: string;
@@ -13,12 +15,20 @@ const loginForm = reactive<LoginForm>({
   password: "",
   remember: false,
 });
+
 const onFinish = (values: any) => {
   console.log("Success:", values);
 };
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
+const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+  // Scroll to the first error field
+  if (errorInfo.errorFields.length > 0) {
+    const firstErrorField = errorInfo.errorFields[0].name[0];
+    const errorElement = document.querySelector(`#basic_${firstErrorField}`);
+    if (errorElement) {
+      errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
 };
 </script>
 
