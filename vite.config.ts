@@ -1,4 +1,5 @@
 import { resolve } from "path";
+import path from "path";
 
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
@@ -10,6 +11,7 @@ export default defineConfig({
       "@": resolve(__dirname, "./src"),
     },
   },
+  envDir: path.resolve(__dirname, "./src/core/config/envs"),
   css: {
     preprocessorOptions: {
       scss: {

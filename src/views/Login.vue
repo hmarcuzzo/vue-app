@@ -2,6 +2,7 @@
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { reactive, ref } from "vue";
 
+import { settingsConfig } from "@/core/config/settings.config";
 import type { ValidateErrorEntity } from "@/core/types/form.type";
 import { scrollIntoView } from "@/core/utils/scroll.util";
 
@@ -21,26 +22,34 @@ const loginError = ref<string>("");
 const isLoading = ref<boolean>(false);
 
 const onFinish = async (values: LoginForm) => {
+  isLoading.value = true;
   try {
-    isLoading.value = true;
-    // Mock API call
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (values.username === "admin" && values.password === "admin") {
-          resolve(true);
-        } else {
-          reject(new Error("Invalid credentials"));
-        }
-      }, 1000);
+    const params = new URLSearchParams();
+    params.append("username", values.username);
+    params.append("password", values.password);
+
+    const response = await fetch(`${settingsConfig.apiBaseUrl}/auth-service/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
     });
 
-    // Success case
-    loginError.value = "";
-    console.log("Success:", values);
-  } catch {
-    loginError.value = "Invalid username or password";
-    scrollIntoView(document.querySelector(".login-error"));
+    if (!response.ok) {
+      loginError.value = "Invalid username or password";
+      return;
+    }
+
+    const { token } = await response.json();
+    const storage = values.remember ? localStorage : sessionStorage;
+    storage.setItem("auth_token", token);
+
+    console.log("Success:", token);
+  } catch (err) {
+    loginError.value =
+      err instanceof TypeError ? "Network error—please try again later." : "Something went wrong. Please try again.";
   } finally {
+    if (loginError.value) scrollIntoView(document.querySelector(".login-error"));
+
     isLoading.value = false;
   }
 };
