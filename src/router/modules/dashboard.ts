@@ -7,6 +7,5 @@ export const dashboardRoutes: RouteRecordRaw[] = [
     path: "/",
     name: RoutesName.HOME,
     component: () => import("@/views/Home.vue"),
-    meta: { requiresAuth: true },
   },
 ];

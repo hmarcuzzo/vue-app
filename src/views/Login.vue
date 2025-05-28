@@ -21,11 +21,10 @@ const onFinish = async (values: LoginForm) => {
   try {
     const response = await AuthService.login(values.username, values.password);
 
-    const { token } = response.data;
-    const storage = values.remember ? localStorage : sessionStorage;
-    storage.setItem("auth_token", token);
+    const data = response.data;
+    // tokenUtil.setTokens(data.token, "", values.remember);
 
-    console.log("Success:", token);
+    console.log("Success:", data);
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {
       if (err.response?.status === 401) {
