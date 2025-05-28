@@ -6,7 +6,7 @@ export const authRoutes: RouteRecordRaw[] = [
   {
     path: "/login",
     name: RoutesName.LOGIN,
-    component: () => import("@/views/Login"),
+    component: () => import("@/views/Login.vue"),
     meta: { requiresAuth: false },
   },
 ];
