@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { tokenUtil, AUTH_KEY, REFRESH_KEY } from "@/core/utils/token.util.ts";
+import { tokenUtil, AUTH_KEY, REFRESH_KEY } from "@/core/utils/token.util";
 
 interface AuthState {
   authToken: string | null;
