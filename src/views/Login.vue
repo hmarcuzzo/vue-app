@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import axios from "axios";
 import { reactive, ref } from "vue";
 
 import AuthService from "@/apis/auth.service.ts";
@@ -25,11 +26,15 @@ const onFinish = async (values: LoginForm) => {
     storage.setItem("auth_token", token);
 
     console.log("Success:", token);
-  } catch (err: any) {
-    if (err.response?.status === 401) {
-      loginError.value = "Invalid username or password.";
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      if (err.response?.status === 401) {
+        loginError.value = "Invalid username or password.";
+      } else {
+        loginError.value = "Network error—please try again later.";
+      }
     } else {
-      loginError.value = "Network error—please try again later.";
+      loginError.value = "An unexpected error occurred.";
     }
   } finally {
     if (loginError.value) scrollIntoView(document.querySelector(".login-error"));
