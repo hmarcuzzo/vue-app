@@ -2,10 +2,15 @@
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import axios from "axios";
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 
 import AuthService from "@/apis/auth.service";
+import { RoutesName } from "@/core/enums/routes.enum";
 import type { LoginForm, ValidateErrorEntity } from "@/core/types/loginForm.type";
 import { scrollIntoView } from "@/core/utils/scroll.util";
+import { tokenUtil } from "@/core/utils/token.util";
+
+const router = useRouter();
 
 const loginForm = reactive<LoginForm>({
   username: "",
@@ -22,9 +27,7 @@ const onFinish = async (values: LoginForm) => {
     const response = await AuthService.login(values.username, values.password);
 
     const data = response.data;
-    // tokenUtil.setTokens(data.token, "", values.remember);
-
-    console.log("Success:", data);
+    tokenUtil.setTokens(data.access_token, "", values.remember);
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {
       if (err.response?.status === 401) {
@@ -37,6 +40,8 @@ const onFinish = async (values: LoginForm) => {
     }
   } finally {
     if (loginError.value) scrollIntoView(document.querySelector(".login-error"));
+
+    await router.push({ name: RoutesName.HOME });
     isLoading.value = false;
   }
 };
