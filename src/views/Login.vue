@@ -2,15 +2,9 @@
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { reactive, ref } from "vue";
 
-import { settingsConfig } from "@/core/config/settings.config";
-import type { ValidateErrorEntity } from "@/core/types/form.type";
+import AuthService from "@/apis/auth.service.ts";
+import type { LoginForm, ValidateErrorEntity } from "@/core/types/loginForm.type.ts";
 import { scrollIntoView } from "@/core/utils/scroll.util";
-
-interface LoginForm {
-  username: string;
-  password: string;
-  remember: boolean;
-}
 
 const loginForm = reactive<LoginForm>({
   username: "",
@@ -24,32 +18,21 @@ const isLoading = ref<boolean>(false);
 const onFinish = async (values: LoginForm) => {
   isLoading.value = true;
   try {
-    const params = new URLSearchParams();
-    params.append("username", values.username);
-    params.append("password", values.password);
+    const response = await AuthService.login(values.username, values.password);
 
-    const response = await fetch(`${settingsConfig.apiBaseUrl}/auth-service/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-    });
-
-    if (!response.ok) {
-      loginError.value = "Invalid username or password";
-      return;
-    }
-
-    const { token } = await response.json();
+    const { token } = response.data;
     const storage = values.remember ? localStorage : sessionStorage;
     storage.setItem("auth_token", token);
 
     console.log("Success:", token);
-  } catch (err) {
-    loginError.value =
-      err instanceof TypeError ? "Network error—please try again later." : "Something went wrong. Please try again.";
+  } catch (err: any) {
+    if (err.response?.status === 401) {
+      loginError.value = "Invalid username or password.";
+    } else {
+      loginError.value = "Network error—please try again later.";
+    }
   } finally {
     if (loginError.value) scrollIntoView(document.querySelector(".login-error"));
-
     isLoading.value = false;
   }
 };
