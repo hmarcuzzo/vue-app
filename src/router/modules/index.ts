@@ -1,2 +1,2 @@
-export * from "./auth.ts";
-export * from "./dashboard.ts";
+export * from "./auth";
+export * from "./dashboard";

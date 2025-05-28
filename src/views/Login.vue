@@ -3,8 +3,8 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import axios from "axios";
 import { reactive, ref } from "vue";
 
-import AuthService from "@/apis/auth.service.ts";
-import type { LoginForm, ValidateErrorEntity } from "@/core/types/loginForm.type.ts";
+import AuthService from "@/apis/auth.service";
+import type { LoginForm, ValidateErrorEntity } from "@/core/types/loginForm.type";
 import { scrollIntoView } from "@/core/utils/scroll.util";
 
 const loginForm = reactive<LoginForm>({

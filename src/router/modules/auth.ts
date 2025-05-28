@@ -1,12 +1,12 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { RoutesName } from "@/core/enums/routes.enum.ts";
+import { RoutesName } from "@/core/enums/routes.enum";
 
 export const authRoutes: RouteRecordRaw[] = [
   {
     path: "/login",
     name: RoutesName.LOGIN,
-    component: () => import("@/views/Login.vue"),
+    component: () => import("@/views/Login"),
     meta: { requiresAuth: false },
   },
 ];
