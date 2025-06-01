@@ -25,9 +25,9 @@ const isLoading = ref<boolean>(false);
 const onFinish = async (values: LoginForm) => {
   isLoading.value = true;
   try {
-    const data = (await AuthService.login(values.username, values.password)).data;
+    const data = (await AuthService.login(values.username, values.password, values.remember)).data;
 
-    authStore.setAuthentication({ token: data.access_token, remember: values.remember });
+    authStore.setAuthentication({ token: data.access_token });
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {
       if (err.response?.status === 401) {

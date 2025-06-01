@@ -6,10 +6,11 @@ import type { LoginResponse } from "@/core/types/auth.type";
 class AuthService {
   private readonly basePath: string = "/auth-service";
 
-  async login(username: string, password: string): Promise<AxiosResponse<LoginResponse>> {
+  async login(username: string, password: string, remember?: boolean): Promise<AxiosResponse<LoginResponse>> {
     const params = new URLSearchParams();
     params.append("username", username);
     params.append("password", password);
+    if (remember) params.append("scope", "remember");
 
     return await client.post<LoginResponse>(`${this.basePath}/login`, params.toString(), {
       headers: {

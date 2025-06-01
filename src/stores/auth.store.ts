@@ -1,17 +1,16 @@
 import { jwtDecode } from "jwt-decode";
 import { defineStore } from "pinia";
 
+import AuthService from "@/apis/auth.service.ts";
 import type { JwtPayload } from "@/core/types/auth.type";
 
 interface AuthState {
   token: string | null;
-  remember?: boolean;
 }
 
 export const useAuthStore = defineStore("auth", {
   state: (): AuthState => ({
     token: null,
-    remember: false,
   }),
 
   getters: {
@@ -28,15 +27,25 @@ export const useAuthStore = defineStore("auth", {
   },
 
   actions: {
-    setAuthentication({ token, remember }: AuthState): void {
+    setAuthentication({ token }: AuthState): void {
       this.token = token;
-      this.remember = remember ?? this.remember;
     },
 
     clearAuthentication(): void {
-      this.setAuthentication({ token: null, remember: false });
+      this.setAuthentication({ token: null });
+    },
+
+    async ensureAuth(): Promise<boolean> {
+      if (this.isAuthenticated) return true;
+
+      try {
+        const data = (await AuthService.refresh()).data;
+        this.setAuthentication({ token: data.access_token });
+        return true;
+      } catch {
+        this.setAuthentication({ token: null });
+        return false;
+      }
     },
   },
-
-  persist: true,
 });
