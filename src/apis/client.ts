@@ -6,6 +6,7 @@ const client = axios.create({
   baseURL: settingsConfig.apiBaseUrl,
   timeout: 10_000,
   headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 });
 
 export default client;

@@ -8,9 +8,10 @@ import AuthService from "@/apis/auth.service";
 import { RoutesName } from "@/core/enums/routes.enum";
 import type { LoginForm, ValidateErrorEntity } from "@/core/types/loginForm.type";
 import { scrollIntoView } from "@/core/utils/scroll.util";
-import { tokenUtil } from "@/core/utils/token.util";
+import { useAuthStore } from "@/stores/auth.store";
 
 const router = useRouter();
+const authStore = useAuthStore();
 
 const loginForm = reactive<LoginForm>({
   username: "",
@@ -24,10 +25,9 @@ const isLoading = ref<boolean>(false);
 const onFinish = async (values: LoginForm) => {
   isLoading.value = true;
   try {
-    const response = await AuthService.login(values.username, values.password);
+    const data = (await AuthService.login(values.username, values.password)).data;
 
-    const data = response.data;
-    tokenUtil.setTokens(data.access_token, "", values.remember);
+    authStore.setAuthentication({ token: data.access_token, remember: values.remember });
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {
       if (err.response?.status === 401) {

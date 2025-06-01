@@ -17,6 +17,10 @@ class AuthService {
       },
     });
   }
+
+  async refresh(): Promise<AxiosResponse<LoginResponse>> {
+    return await client.post<LoginResponse>(`${this.basePath}/refresh`, {});
+  }
 }
 
 export default new AuthService();

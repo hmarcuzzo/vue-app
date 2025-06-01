@@ -1,46 +1,42 @@
+import { jwtDecode } from "jwt-decode";
 import { defineStore } from "pinia";
 
-import { tokenUtil, AUTH_KEY, REFRESH_KEY } from "@/core/utils/token.util";
+import type { JwtPayload } from "@/core/types/auth.type";
 
 interface AuthState {
-  authToken: string | null;
-  refreshToken: string | null;
+  token: string | null;
+  remember?: boolean;
 }
 
 export const useAuthStore = defineStore("auth", {
   state: (): AuthState => ({
-    authToken: tokenUtil.getItem(AUTH_KEY),
-    refreshToken: tokenUtil.getItem(REFRESH_KEY),
+    token: null,
+    remember: false,
   }),
 
   getters: {
-    isAuthValid: (state) => state.authToken != null && tokenUtil.isTokenValid(state.authToken),
-    isRefreshValid: (state) => state.refreshToken != null && tokenUtil.isTokenValid(state.refreshToken),
+    isAuthenticated(state: AuthState): boolean {
+      if (!state.token) return false;
+
+      try {
+        const { exp } = jwtDecode<JwtPayload>(state.token);
+        return exp * 1000 > Date.now();
+      } catch {
+        return false;
+      }
+    },
   },
 
   actions: {
-    setTokens(authToken: string, refreshToken: string, remember: boolean = true) {
-      const [target, other] = remember ? [localStorage, sessionStorage] : [sessionStorage, localStorage];
-
-      // clear tokens from other storage
-      [AUTH_KEY, REFRESH_KEY].forEach((key) => other.removeItem(key));
-
-      // set tokens
-      target.setItem(AUTH_KEY, authToken);
-      target.setItem(REFRESH_KEY, refreshToken);
-
-      // update state
-      this.authToken = authToken;
-      this.refreshToken = refreshToken;
+    setAuthentication({ token, remember }: AuthState): void {
+      this.token = token;
+      this.remember = remember ?? this.remember;
     },
 
-    clearTokens() {
-      [AUTH_KEY, REFRESH_KEY].forEach((key) => {
-        localStorage.removeItem(key);
-        sessionStorage.removeItem(key);
-      });
-      this.authToken = null;
-      this.refreshToken = null;
+    clearAuthentication(): void {
+      this.setAuthentication({ token: null, remember: false });
     },
   },
+
+  persist: true,
 });

@@ -1,13 +1,13 @@
 import { type NavigationGuardNext, type RouteLocationNormalized, useRouter } from "vue-router";
 
 import { RoutesName } from "@/core/enums/routes.enum";
-import { tokenUtil } from "@/core/utils/token.util";
+import { useAuthStore } from "@/stores/auth.store";
 
 export const loginGuard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-  const token = tokenUtil.getAuthToken() || tokenUtil.getRefreshToken();
   const router = useRouter();
+  const authStore = useAuthStore();
 
-  if (!token) return next();
+  if (!authStore.token) return next();
 
   if (from.name) {
     next(false);

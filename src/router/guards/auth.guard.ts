@@ -1,29 +1,31 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
+import AuthService from "@/apis/auth.service.ts";
 import { RoutesName } from "@/core/enums/routes.enum";
-import { tokenUtil } from "@/core/utils/token.util";
+import { useAuthStore } from "@/stores/auth.store";
 
-export const authGuard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+export const authGuard = async (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext,
+) => {
   const requiresAuth = !to.matched.some((record) => record.meta.requiresAuth === false);
+  const authStore = useAuthStore();
 
   if (!requiresAuth) return next();
 
-  const authToken = tokenUtil.getAuthToken();
-  if (authToken && tokenUtil.isTokenValid(authToken)) {
+  if (authStore.token && authStore.isAuthenticated) {
     return next();
   }
 
-  const refreshToken = tokenUtil.getRefreshToken();
-  if (refreshToken && tokenUtil.isTokenValid(refreshToken)) {
-    // try {
-    //   const { data } = await AuthService.refresh(refreshToken);
-    //   tokenUtil.setTokens(data.token, data.refreshToken, tokenUtil.isKeyInLocalStorage(REFRESH_KEY));
-    //   return next();
-    // } catch (err) {
-    //   console.warn("Token refresh failed: ", err);
-    // }
+  try {
+    const data = (await AuthService.refresh()).data;
+    authStore.setAuthentication({ token: data.access_token });
+    return next();
+  } catch (err) {
+    console.warn("Token refresh failed: ", err);
   }
 
-  tokenUtil.clearTokens();
+  authStore.clearAuthentication();
   next({ name: RoutesName.LOGIN });
 };
