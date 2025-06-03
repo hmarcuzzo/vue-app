@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use '@/assets/scss/abstracts/variables' as *;
 
 .ant-alert {
   border-radius: $border-radius-md;

@@ -3,7 +3,7 @@ const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="footer">
+  <footer class="app-footer">
     <div class="container">
       <div class="content">
         <a-typography-text class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</a-typography-text>
@@ -21,7 +21,7 @@ const currentYear = new Date().getFullYear();
 $container-width: 1200px;
 $spacing-base: 1rem;
 
-.footer {
+.app-footer {
   background-color: var(--color-bg-grey);
   padding: $spacing-base * 1.5 0;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);

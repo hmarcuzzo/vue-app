@@ -1,0 +1,36 @@
+@use "@/assets/scss/abstracts/colours" as c;
+
+:root {
+  // Primary Colors
+  --color-primary: #{c.$primary};    // Main brand color
+  --color-primary-light: #{c.$primary-light};  // Light variant
+  --color-primary-dark: #{c.$primary-dark};   // Dark variant
+
+  // Accent Colors
+  --color-accent: #{c.$accent};
+  --color-accent-dark: #{c.$accent-dark};
+
+  // Grey Colors
+  --color-grey: #{c.$grey};   // Default grey color
+
+  // Text Colors
+  --color-text-primary: #{c.$text-primary};
+  --color-text-light: #{c.$text-light};
+  --color-text-muted: #{c.$text-muted};  // Using primary-dark with opacity
+
+  // Background Colors
+  --color-bg-primary: #{c.$bg-primary};
+  --color-bg-secondary: #{c.$bg-secondary};  // Light background
+  --color-bg-dark: #{c.$bg-dark};  // Dark background
+  --color-bg-grey:  #{c.$bg-grey};  // Default grey color for backgrounds
+
+  // Border Colors
+  --color-border: #{c.$border};  // Using primary-dark with opacity
+  --color-border-dark: #{c.$border-dark};  // Using primary-dark with opacity
+
+  // Status Colors
+  --color-success: #{c.$success};
+  --color-warning: #{c.$warning};
+  --color-error: #{c.$error};
+  --color-info: #{c.$info};
+}

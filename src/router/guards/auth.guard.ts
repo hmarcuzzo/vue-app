@@ -1,6 +1,6 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
-import AuthService from "@/apis/auth.service.ts";
+import AuthService from "@/apis/auth.service";
 import { RoutesName } from "@/core/enums/routes.enum";
 import { useAuthStore } from "@/stores/auth.store";
 

@@ -1,7 +1,7 @@
 import type { ThemeConfig } from "ant-design-vue/es/config-provider/context";
 
-import colours from "@/assets/modules/_colours.module.scss";
-import typography from "@/assets/modules/_typography.module.scss";
+import colours from "@/assets/scss/modules/_colours.module.scss";
+import typography from "@/assets/scss/modules/_typography.module.scss";
 
 export const themeConfig: ThemeConfig = {
   token: {

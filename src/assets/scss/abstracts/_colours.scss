@@ -1,0 +1,25 @@
+$primary: #219EBC;
+$primary-light: #8ECAE6;
+$primary-dark: #023047;
+
+$accent: #FFB703;
+$accent-dark: #FB8500;
+
+$grey: #282828;
+
+$text-primary: $grey;
+$text-light: #FFFFFF;
+$text-muted: rgba($primary-dark, .7);
+
+$bg-primary: #FFFFFF;
+$bg-secondary: $primary-light;
+$bg-dark: $primary-dark;
+$bg-grey: $grey;
+
+$border: rgba($primary-dark, .1);
+$border-dark: rgba($primary-dark, .2);
+
+$success: #4CAF50;
+$warning: $accent;
+$error: #FF5252;
+$info: $primary;

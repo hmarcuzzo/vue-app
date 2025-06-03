@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Footer from "@/components/Footer.vue";
+import AppFooter from "@/components/AppFooter.vue";
 import { themeConfig } from "@/core/config/theme.config";
 </script>
 
@@ -9,13 +9,13 @@ import { themeConfig } from "@/core/config/theme.config";
       <main>
         <router-view />
       </main>
-      <Footer />
+      <AppFooter />
     </div>
   </a-config-provider>
 </template>
 
 <style lang="scss">
-@use "@/assets/_index" as *;
+@use "@/assets/scss/index" as *;
 
 .app-container {
   min-height: 100vh;
