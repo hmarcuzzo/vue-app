@@ -1,8 +1,3 @@
-export interface AppConfig {
-  appName: string;
-  appVersion: string;
-  apiBaseUrl: string;
-  enableDebugMode: boolean;
-}
+import type { AppConfig } from "@/core/interfaces/settings.interface";
 
 export type SettingsConfig = AppConfig;

@@ -1,4 +1,5 @@
-import type { AppConfig, SettingsConfig } from "@/core/types/settings.type";
+import type { AppConfig } from "@/core/interfaces/settings.interface";
+import type { SettingsConfig } from "@/core/types/settings.type";
 
 const dotEnv = import.meta.env;
 
