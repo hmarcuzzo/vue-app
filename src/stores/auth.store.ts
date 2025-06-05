@@ -1,8 +1,8 @@
 import { jwtDecode } from "jwt-decode";
 import { defineStore } from "pinia";
 
-import AuthService from "@/apis/auth.service";
-import type { JwtPayload } from "@/core/types/auth.type";
+import { useAuth } from "@/apis/auth.service";
+import type { JwtPayload } from "@/core/interfaces/auth.interface";
 
 interface AuthState {
   token: string | null;
@@ -38,8 +38,10 @@ export const useAuthStore = defineStore("auth", {
     async ensureAuth(): Promise<boolean> {
       if (this.isAuthenticated) return true;
 
+      const { refresh } = useAuth();
+
       try {
-        const data = (await AuthService.refresh()).data;
+        const data = (await refresh()).data;
         this.setAuthentication({ token: data.access_token });
         return true;
       } catch {

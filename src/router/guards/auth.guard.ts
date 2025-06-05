@@ -1,6 +1,6 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
-import AuthService from "@/apis/auth.service";
+import { useAuth } from "@/apis/auth.service";
 import { RoutesName } from "@/core/enums/routes.enum";
 import { useAuthStore } from "@/stores/auth.store";
 
@@ -18,12 +18,13 @@ export const authGuard = async (
     return next();
   }
 
+  const { error: authError, refresh } = useAuth();
   try {
-    const data = (await AuthService.refresh()).data;
+    const data = (await refresh()).data;
     authStore.setAuthentication({ token: data.access_token });
     return next();
-  } catch (err) {
-    console.warn("Token refresh failed: ", err);
+  } catch {
+    console.warn(authError);
   }
 
   authStore.clearAuthentication();

@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import axios from "axios";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 
-import AuthService from "@/apis/auth.service";
+import { useAuth } from "@/apis/auth.service";
 import { RoutesName } from "@/core/enums/routes.enum";
-import type { LoginForm, ValidateErrorEntity } from "@/core/types/loginForm.type";
+import type { LoginForm, ValidateErrorEntity } from "@/core/interfaces/loginForm.interface";
 import { scrollIntoView } from "@/core/utils/scroll.util";
 import { useAuthStore } from "@/stores/auth.store";
 
@@ -19,27 +18,17 @@ const loginForm = reactive<LoginForm>({
   remember: false,
 });
 
-const loginError = ref<string>("");
 const isLoading = ref<boolean>(false);
+const { error: authError, login } = useAuth();
 
 const onFinish = async (values: LoginForm) => {
   isLoading.value = true;
   try {
-    const data = (await AuthService.login(values.username, values.password, values.remember)).data;
+    const data = (await login(values.username, values.password, values.remember)).data;
 
     authStore.setAuthentication({ token: data.access_token });
-  } catch (err: unknown) {
-    if (axios.isAxiosError(err)) {
-      if (err.response?.status === 401) {
-        loginError.value = "Invalid username or password.";
-      } else {
-        loginError.value = "Network error—please try again later.";
-      }
-    } else {
-      loginError.value = "An unexpected error occurred.";
-    }
   } finally {
-    if (loginError.value) scrollIntoView(document.querySelector(".login-error"));
+    if (authError.value) scrollIntoView(document.querySelector(".login-error"));
 
     await router.push({ name: RoutesName.HOME });
     isLoading.value = false;
@@ -60,8 +49,8 @@ const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     <a-card class="login-card">
       <a-typography-title class="title">Sign in</a-typography-title>
       <a-form :model="loginForm" name="basic" autocomplete="on" @finish="onFinish" @finishFailed="onFinishFailed">
-        <div v-if="loginError" class="login-error">
-          <a-alert type="error" :message="loginError" banner />
+        <div v-if="authError" class="login-error">
+          <a-alert type="error" :message="authError" banner />
         </div>
 
         <div class="login-input">
