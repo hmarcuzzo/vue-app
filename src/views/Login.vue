@@ -100,10 +100,6 @@ $sign-in-max-width: 400px;
   margin: 0 auto;
 }
 
-%full-width {
-  width: 100%;
-}
-
 @mixin center-flex {
   display: flex;
   align-items: center;
@@ -145,7 +141,7 @@ $sign-in-max-width: 400px;
     flex-direction: column;
 
     :deep(.ant-form-item) {
-      @extend %full-width;
+      width: 100%;
       margin-bottom: 24px;
     }
     :deep(.ant-input) {
