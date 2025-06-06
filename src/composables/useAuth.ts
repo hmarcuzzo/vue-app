@@ -1,8 +1,8 @@
 import axios, { type AxiosResponse } from "axios";
 import { ref } from "vue";
 
-import client from "@/apis/client";
-import type { LoginResponse } from "@/core/interfaces/auth.interface";
+import client from "@/apis/client.ts";
+import type { LoginResponse } from "@/core/interfaces/auth.interface.ts";
 
 export function useAuth() {
   const basePath: string = "/auth-service";

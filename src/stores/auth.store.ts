@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { defineStore } from "pinia";
 
-import { useAuth } from "@/apis/auth.service";
+import { useAuth } from "@/composables/useAuth";
 import type { JwtPayload } from "@/core/interfaces/auth.interface";
 
 interface AuthState {
