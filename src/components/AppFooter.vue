@@ -26,6 +26,7 @@ $spacing-base: 1rem;
   padding: $spacing-base * 1.5 0;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+  margin-top: auto;
 
   span,
   a {

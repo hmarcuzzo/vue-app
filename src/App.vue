@@ -18,12 +18,8 @@ import { themeConfig } from "@/core/config/theme.config";
 @use "@/assets/scss/index" as *;
 
 .app-container {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
 }
 </style>
