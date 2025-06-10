@@ -1,7 +1,7 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
 
 import { useAuth } from "@/composables/useAuth";
-import { RoutesName } from "@/core/enums/routes.enum";
+import { RoutesName } from "@/core/constants/enums/routes.enum";
 import { useAuthStore } from "@/stores/auth.store";
 
 export const authGuard = async (

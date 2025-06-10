@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter, type RouteRecordRaw } from "vue-router";
 
-import { RoutesName } from "@/core/enums/routes.enum";
+import { RoutesName } from "@/core/constants/enums/routes.enum";
 import { authGuard } from "@/router/guards";
 import { authRoutes, dashboardRoutes } from "@/router/modules";
 

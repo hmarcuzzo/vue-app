@@ -4,7 +4,7 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 
 import { useAuth } from "@/composables/useAuth";
-import { RoutesName } from "@/core/enums/routes.enum";
+import { RoutesName } from "@/core/constants/enums/routes.enum";
 import type { LoginForm, ValidateErrorEntity } from "@/core/interfaces/loginForm.interface";
 import { scrollIntoView } from "@/core/utils/scroll.util";
 import { useAuthStore } from "@/stores/auth.store";
