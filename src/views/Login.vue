@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import { reactive, ref } from "vue";
+import { nextTick, reactive, ref, useTemplateRef, watch } from "vue";
 import { useRouter } from "vue-router";
 
 import { useAuth } from "@/composables/useAuth";
 import { RoutesName } from "@/core/constants/enums/routes.enum";
 import type { LoginForm, ValidateErrorEntity } from "@/core/interfaces/loginForm.interface";
-import { scrollIntoView } from "@/core/utils/scroll.util";
+import { DEFAULT_SCROLL_OPTIONS, scrollIntoView } from "@/core/utils/scroll.util";
 import { useAuthStore } from "@/stores/auth.store";
 
 const router = useRouter();
@@ -21,15 +21,26 @@ const loginForm = reactive<LoginForm>({
 const isLoading = ref<boolean>(false);
 const { error: authError, login } = useAuth();
 
+const errorContainer = useTemplateRef("error-container");
+watch(authError, async (newError) => {
+  if (newError) {
+    // Ensure the DOM has updated and the element is rendered
+    await nextTick();
+    if (errorContainer.value) {
+      errorContainer.value.scrollIntoView(DEFAULT_SCROLL_OPTIONS);
+    }
+  }
+});
+
 const onFinish = async (values: LoginForm) => {
   isLoading.value = true;
+  if (authError.value) authError.value = "";
+
   try {
     const data = (await login(values.username, values.password, values.remember)).data;
 
     authStore.setAuthentication({ token: data.access_token });
   } finally {
-    if (authError.value) scrollIntoView(document.querySelector(".login-error"));
-
     await router.push({ name: RoutesName.HOME });
     isLoading.value = false;
   }
@@ -49,7 +60,7 @@ const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     <a-card class="login-card">
       <a-typography-title class="title">Sign in</a-typography-title>
       <a-form :model="loginForm" name="basic" autocomplete="on" @finish="onFinish" @finishFailed="onFinishFailed">
-        <div v-if="authError" class="login-error">
+        <div v-if="authError" class="login-error" ref="error-container">
           <a-alert type="error" :message="authError" banner />
         </div>
 
