@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { SettingOutlined } from "@ant-design/icons-vue";
+import { UserOutlined, SettingOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
 
 import { RoutesName } from "@/core/constants/enums/routes.enum.ts";
 
 const router = useRouter();
+
+const showProfile = true;
 
 async function goHome() {
   await router.push({ name: RoutesName.HOME });
@@ -21,11 +23,44 @@ async function goHome() {
             <template #icon><SettingOutlined class="header-settings-icon" /></template>
           </a-button>
           <template #overlay>
-            <a-menu>
-              <a-menu-item key="login">
-                <router-link to="/login">Login</router-link>
-              </a-menu-item>
-            </a-menu>
+            <div class="custom-dropdown-overlay">
+              <a-menu>
+                <template v-if="showProfile">
+                  <a-menu-item key="login" title="Login">
+                    <template #icon>
+                      <UserOutlined style="margin-right: 8px" />
+                    </template>
+                    Login
+                  </a-menu-item>
+                  <a-menu-divider />
+                </template>
+
+                <a-sub-menu key="theme" title="Theme">
+                  <template #icon>
+                    <UserOutlined style="margin-right: 8px" />
+                  </template>
+
+                  <a-menu-item key="light">
+                    <template #icon>
+                      <UserOutlined style="margin-right: 8px" />
+                    </template>
+                    Light
+                  </a-menu-item>
+                  <a-menu-item key="dark">
+                    <template #icon>
+                      <UserOutlined style="margin-right: 8px" />
+                    </template>
+                    Dark
+                  </a-menu-item>
+                  <a-menu-item key="browser">
+                    <template #icon>
+                      <UserOutlined style="margin-right: 8px" />
+                    </template>
+                    Browser
+                  </a-menu-item>
+                </a-sub-menu>
+              </a-menu>
+            </div>
           </template>
         </a-dropdown>
       </ul>
