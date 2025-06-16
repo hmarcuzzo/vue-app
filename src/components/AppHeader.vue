@@ -17,8 +17,8 @@ async function goHome() {
       <a-button type="text" class="header-logo" @click="goHome">ERP Identity</a-button>
       <ul class="header-links">
         <a-dropdown trigger="['click']">
-          <a-button type="text">
-            <template #icon><SettingOutlined /></template>
+          <a-button type="text" class="header-settings-btn">
+            <template #icon><SettingOutlined class="header-settings-icon" /></template>
           </a-button>
           <template #overlay>
             <a-menu>
@@ -38,26 +38,38 @@ async function goHome() {
   width: 100%;
   background: var(--color-primary);
   border-bottom: 1px solid var(--color-primary-light);
+}
 
-  .header-content {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1.5rem;
+.header-content {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem;
+}
 
-    .header-logo {
-      font-weight: var(--font-weight-bold);
-      color: #fff;
-    }
+.header-logo {
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+}
 
-    .header-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
-  }
+.header-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.header-settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.header-settings-icon {
+  color: var(--color-text-light);
+  font-size: var(--font-size-xl);
 }
 </style>
