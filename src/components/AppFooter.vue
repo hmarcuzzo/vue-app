@@ -4,10 +4,10 @@ const currentYear = new Date().getFullYear();
 
 <template>
   <footer class="app-footer">
-    <div class="container">
-      <div class="content">
+    <div class="footer-container">
+      <div class="footer-content">
         <a-typography-text class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</a-typography-text>
-        <nav class="links">
+        <nav class="footer-links">
           <a-typography-link href="#" target="_blank">Privacy Policy</a-typography-link>
           <a-typography-link href="#" target="_blank">Terms of Service</a-typography-link>
           <a-typography-link href="#" target="_blank">Contact</a-typography-link>
@@ -32,44 +32,44 @@ $spacing-base: 1rem;
   a {
     color: var(--color-text-light);
   }
+}
 
-  .container {
-    width: 100%;
-    max-width: $container-width;
-    margin: 0 auto;
-    padding: 0 $spacing-base;
+.footer-container {
+  width: 100%;
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $spacing-base;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: $breakpoint-desktop) {
+    flex-direction: row;
   }
+}
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.copyright {
+  margin-bottom: $spacing-base;
 
-    @media (min-width: $breakpoint-desktop) {
-      flex-direction: row;
-    }
+  @media (min-width: $breakpoint-desktop) {
+    margin-bottom: 0;
   }
+}
 
-  .copyright {
-    margin-bottom: $spacing-base;
+.footer-links {
+  display: flex;
+  gap: $spacing-base;
 
-    @media (min-width: $breakpoint-desktop) {
-      margin-bottom: 0;
-    }
-  }
+  a {
+    transition: all 0.1s ease-in-out;
+    text-decoration: none;
 
-  .links {
-    display: flex;
-    gap: $spacing-base;
-
-    a {
-      transition: all 0.1s ease-in-out;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
