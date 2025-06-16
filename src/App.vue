@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import AppFooter from "@/components/AppFooter.vue";
+import AppHeader from "@/components/AppHeader.vue";
 import { themeConfig } from "@/core/config/theme.config";
 </script>
 
 <template>
   <a-config-provider :theme="themeConfig">
     <div class="app-container">
+      <AppHeader />
       <main>
         <router-view />
       </main>
