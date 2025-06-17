@@ -130,7 +130,9 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
   font-size: var(--font-size-base) !important;
 }
 
-.ant-dropdown-menu-submenu-popup {
+.ant-dropdown-menu-sub {
   min-width: 190px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 </style>
