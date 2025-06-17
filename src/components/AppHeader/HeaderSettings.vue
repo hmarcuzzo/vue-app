@@ -8,6 +8,20 @@ import { useAuthStore } from "@/stores/auth.store";
 const selectedKeys = ref([]);
 const openKeys = ref([]);
 
+const showTooltip = ref(false);
+const dropdownOpen = ref(false);
+
+const handleButtonMouseEnter = () => {
+  if (!dropdownOpen.value) showTooltip.value = true;
+};
+const handleButtonMouseLeave = () => {
+  showTooltip.value = false;
+};
+const handleDropdownVisibleChange = (open: boolean) => {
+  dropdownOpen.value = open;
+  if (open) showTooltip.value = false;
+};
+
 const authStore = useAuthStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
 
@@ -56,10 +70,17 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
 </script>
 
 <template>
-  <a-dropdown trigger="['click']">
-    <a-button type="text" class="header-settings-btn">
-      <template #icon><SettingOutlined class="header-settings-icon" /></template>
-    </a-button>
+  <a-dropdown trigger="['click']" @visibleChange="handleDropdownVisibleChange">
+    <a-tooltip title="Settings" :open="showTooltip">
+      <a-button
+        type="text"
+        class="header-settings-btn"
+        @mouseenter="handleButtonMouseEnter"
+        @mouseleave="handleButtonMouseLeave"
+      >
+        <template #icon><SettingOutlined class="header-settings-icon" /></template>
+      </a-button>
+    </a-tooltip>
     <template #overlay>
       <div class="custom-dropdown-overlay">
         <a-menu
