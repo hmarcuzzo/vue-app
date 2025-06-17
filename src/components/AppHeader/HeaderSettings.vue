@@ -12,16 +12,7 @@ const authStore = useAuthStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
 
 const items = ref([
-  ...(isLoggedIn.value
-    ? [
-        {
-          key: "profile",
-          icon: () => h(UserOutlined),
-          label: "Profile",
-          title: "Profile",
-        },
-      ]
-    : []),
+  ...(isLoggedIn.value ? [{ key: "profile", icon: () => h(UserOutlined), label: "Profile", title: "Profile" }] : []),
   {
     key: "theme",
     icon: () => h(AppstoreOutlined),
@@ -29,38 +20,13 @@ const items = ref([
     title: "Theme",
     expandIcon: () => h(RightOutlined),
     children: [
-      {
-        key: "light_theme",
-        icon: () => h(AppstoreOutlined),
-        label: "Light",
-        title: "Light",
-      },
-      {
-        key: "dark_theme",
-        icon: () => h(AppstoreOutlined),
-        label: "Dark",
-        title: "Dark",
-      },
-      {
-        key: "browser_theme",
-        icon: () => h(AppstoreOutlined),
-        label: "Match Browser",
-        title: "Match Browser",
-      },
+      { key: "light_theme", icon: () => h(AppstoreOutlined), label: "Light", title: "Light" },
+      { key: "dark_theme", icon: () => h(AppstoreOutlined), label: "Dark", title: "Dark" },
+      { key: "browser_theme", icon: () => h(AppstoreOutlined), label: "Match Browser", title: "Match Browser" },
     ],
   },
   ...(isLoggedIn.value
-    ? [
-        {
-          type: "divider",
-        },
-        {
-          key: "logout",
-          icon: () => h(LogoutOutlined),
-          label: "Logout",
-          title: "Logout",
-        },
-      ]
+    ? [{ type: "divider" }, { key: "logout", icon: () => h(LogoutOutlined), label: "Logout", title: "Logout" }]
     : []),
 ]);
 
