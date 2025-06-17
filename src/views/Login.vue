@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import { UserIcon, LockClosedIcon, EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";
 import { nextTick, reactive, ref, useTemplateRef, watch } from "vue";
 import { useRouter } from "vue-router";
 
@@ -68,7 +68,7 @@ const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
           <a-form-item name="username" :rules="[{ required: true, message: 'Please input your username!' }]">
             <a-input v-model:value="loginForm.username" placeholder="Username">
               <template #prefix>
-                <UserOutlined class="site-form-item-icon" />
+                <UserIcon class="site-form-item-icon" />
               </template>
             </a-input>
           </a-form-item>
@@ -76,7 +76,11 @@ const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
           <a-form-item name="password" :rules="[{ required: true, message: 'Please input your password!' }]">
             <a-input-password v-model:value="loginForm.password" placeholder="Password">
               <template #prefix>
-                <LockOutlined class="site-form-item-icon" />
+                <LockClosedIcon class="site-form-item-icon" />
+              </template>
+              <template #iconRender="v">
+                <EyeIcon v-if="v" />
+                <EyeSlashIcon v-else />
               </template>
             </a-input-password>
           </a-form-item>
@@ -185,6 +189,21 @@ $sign-in-max-width: 400px;
         font-weight: var(--font-weight-semibold);
       }
     }
+  }
+}
+
+.site-form-item-icon,
+.ant-input-password-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.ant-input-password-icon {
+  color: color-mix(in srgb, var(--color-grey) 30%, white 70%);
+  &:hover,
+  &:focus {
+    color: var(--color-grey);
+    cursor: pointer;
   }
 }
 </style>
