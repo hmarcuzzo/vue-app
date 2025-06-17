@@ -119,7 +119,7 @@ $sign-in-max-width: 400px;
 
 .login-container {
   @include center-flex;
-  min-height: 100dvh;
+  min-height: 90dvh;
 }
 
 .login-card {
