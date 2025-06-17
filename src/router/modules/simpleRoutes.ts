@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 import { RoutesName } from "@/core/constants/enums/routes.enum";
 
-export const dashboardRoutes: RouteRecordRaw[] = [
+export const simpleRoutes: RouteRecordRaw[] = [
   {
     path: "/",
     name: RoutesName.HOME,
