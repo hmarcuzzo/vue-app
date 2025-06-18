@@ -25,7 +25,7 @@ const handleDropdownVisibleChange = (open: boolean) => {
 const authStore = useAuthStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
 
-const items = ref([
+const items = computed(() => [
   ...(isLoggedIn.value ? [{ key: "profile", icon: () => h(UserOutlined), label: "Profile", title: "Profile" }] : []),
   {
     key: "theme",
