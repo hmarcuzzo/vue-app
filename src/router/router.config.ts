@@ -2,11 +2,11 @@ import { createWebHistory, createRouter, type RouteRecordRaw } from "vue-router"
 
 import { RoutesName } from "@/core/constants/enums/routes.enum";
 import { authGuard } from "@/router/guards";
-import { authRoutes, simpleRoutes } from "@/router/modules";
+import { authRoutes, commonRoutes } from "@/router/modules";
 
 const routes = [
   ...authRoutes,
-  ...simpleRoutes,
+  ...commonRoutes,
   {
     path: "/:pathMatch(.*)*",
     name: RoutesName.NOT_FOUND,
