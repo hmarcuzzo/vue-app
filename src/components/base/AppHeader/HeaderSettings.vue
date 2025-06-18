@@ -3,7 +3,7 @@ import { RightOutlined, UserOutlined, AppstoreOutlined, SettingOutlined, LogoutO
 import type { MenuProps } from "ant-design-vue";
 import { computed, h, ref } from "vue";
 
-import { useAuthStore } from "@/stores/auth.store";
+import { useAuthStore } from "@/stores/auth.store.ts";
 
 const selectedKeys = ref([]);
 const openKeys = ref([]);

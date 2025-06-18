@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import HeaderLogo from "@/components/AppHeader/HeaderLogo.vue";
-import HeaderSettings from "@/components/AppHeader/HeaderSettings.vue";
+import HeaderLogo from "@/components/base/AppHeader/HeaderLogo.vue";
+import HeaderSettings from "@/components/base/AppHeader/HeaderSettings.vue";
 </script>
 
 <template>
