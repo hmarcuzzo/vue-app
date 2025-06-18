@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { RightOutlined, UserOutlined, AppstoreOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons-vue";
+import {
+  Cog6ToothIcon,
+  ArrowLeftStartOnRectangleIcon,
+  ChevronRightIcon,
+  MoonIcon,
+  Squares2X2Icon,
+  SunIcon,
+  UserIcon,
+  WindowIcon,
+} from "@heroicons/vue/24/outline";
 import type { MenuProps } from "ant-design-vue";
 import { computed, h, ref } from "vue";
 
@@ -26,21 +35,24 @@ const authStore = useAuthStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
 
 const items = computed(() => [
-  ...(isLoggedIn.value ? [{ key: "profile", icon: () => h(UserOutlined), label: "Profile", title: "Profile" }] : []),
+  ...(isLoggedIn.value ? [{ key: "profile", icon: () => h(UserIcon), label: "Profile", title: "Profile" }] : []),
   {
     key: "theme",
-    icon: () => h(AppstoreOutlined),
+    icon: () => h(Squares2X2Icon),
     label: "Theme",
     title: "Theme",
-    expandIcon: () => h(RightOutlined),
+    expandIcon: () => h(ChevronRightIcon),
     children: [
-      { key: "light_theme", icon: () => h(AppstoreOutlined), label: "Light", title: "Light" },
-      { key: "dark_theme", icon: () => h(AppstoreOutlined), label: "Dark", title: "Dark" },
-      { key: "browser_theme", icon: () => h(AppstoreOutlined), label: "Match Browser", title: "Match Browser" },
+      { key: "light_theme", icon: () => h(SunIcon), label: "Light", title: "Light" },
+      { key: "dark_theme", icon: () => h(MoonIcon), label: "Dark", title: "Dark" },
+      { key: "browser_theme", icon: () => h(WindowIcon), label: "Match Browser", title: "Match Browser" },
     ],
   },
   ...(isLoggedIn.value
-    ? [{ type: "divider" }, { key: "logout", icon: () => h(LogoutOutlined), label: "Logout", title: "Logout" }]
+    ? [
+        { type: "divider" },
+        { key: "logout", icon: () => h(ArrowLeftStartOnRectangleIcon), label: "Logout", title: "Logout" },
+      ]
     : []),
 ]);
 
@@ -78,7 +90,7 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
         @mouseenter="handleButtonMouseEnter"
         @mouseleave="handleButtonMouseLeave"
       >
-        <template #icon><SettingOutlined class="header-settings-icon" /></template>
+        <template #icon><Cog6ToothIcon class="header-settings-icon" /></template>
       </a-button>
     </a-tooltip>
     <template #overlay>
@@ -104,7 +116,8 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
 }
 
 .header-settings-icon {
-  font-size: var(--font-size-xl);
+  width: var(--font-size-2xl);
+  height: var(--font-size-2xl);
   color: var(--color-text-light);
 }
 
@@ -114,24 +127,20 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
   :deep(.ant-dropdown-menu-submenu-title) {
     padding: 5px 18px 5px 12px;
     display: flex;
-
-    .anticon-right {
-      margin-left: auto;
-    }
+    align-items: center;
   }
 }
 </style>
 
 <style lang="scss">
-.ant-dropdown .anticon,
-.ant-dropdown-menu .anticon,
-.ant-menu-submenu .anticon,
-.ant-menu-item .anticon {
-  font-size: var(--font-size-base) !important;
+.ant-dropdown-menu-item-icon,
+.ant-dropdown-menu-submenu-title > svg {
+  width: var(--font-size-base);
+  height: var(--font-size-base);
 }
 
 .ant-dropdown-menu-sub {
-  min-width: 190px !important;
+  min-width: 190px;
   margin: 0 !important;
   padding: 0 !important;
 }

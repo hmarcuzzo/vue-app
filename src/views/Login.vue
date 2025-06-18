@@ -194,8 +194,8 @@ $sign-in-max-width: 400px;
 
 .site-form-item-icon,
 .ant-input-password-icon {
-  width: 20px;
-  height: 20px;
+  width: var(--font-size-xl);
+  height: var(--font-size-xl);
 }
 
 .ant-input-password-icon {
