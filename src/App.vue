@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
+
 import AppFooter from "@/components/base/AppFooter.vue";
 import AppHeader from "@/components/base/AppHeader/AppHeader.vue";
-import { themeConfig } from "@/core/config/theme.config";
+import { themeConfig } from "@/core/config/theme.config.ts";
+import { useAppMetadataStore } from "@/stores/appMetadata.store.ts";
+
+const appMetadataStore = useAppMetadataStore();
+onMounted(() => {
+  appMetadataStore.initTheme();
+});
 </script>
 
 <template>
@@ -23,5 +31,6 @@ import { themeConfig } from "@/core/config/theme.config";
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-bg-primary);
 }
 </style>
