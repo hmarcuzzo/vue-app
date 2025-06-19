@@ -19,7 +19,6 @@ import HeaderSettings from "@/components/base/AppHeader/HeaderSettings.vue";
 .app-header {
   width: 100%;
   background: var(--color-primary);
-  border-bottom: 1px solid var(--color-primary-light);
 }
 
 .header-content {
