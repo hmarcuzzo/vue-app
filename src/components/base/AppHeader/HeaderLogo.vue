@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 
-import { RoutesName } from "@/core/constants/enums/routes.enum.ts";
+import { RoutesName } from "@/core/constants/enums/routes.enum";
 
 const router = useRouter();
 

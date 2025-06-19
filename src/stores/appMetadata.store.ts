@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { ThemeType } from "@/core/constants/enums/themeType.enum.ts";
+import { ThemeType } from "@/core/constants/enums/themeType.enum";
 
 interface AppMetadataState {
   theme: ThemeType;

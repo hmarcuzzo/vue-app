@@ -29,6 +29,15 @@ const importRules = {
       "newlines-between": "always",
     },
   ],
+  "import/extensions": [
+    "error",
+    "ignorePackages",
+    {
+      "ts": "never",
+      "js": "never",
+      "vue": "always"
+    }
+  ]
 };
 
 // Unused imports rules configuration
