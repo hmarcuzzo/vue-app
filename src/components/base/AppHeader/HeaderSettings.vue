@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {
-  Cog6ToothIcon,
   ArrowLeftStartOnRectangleIcon,
   ChevronRightIcon,
+  Cog6ToothIcon,
   MoonIcon,
   Squares2X2Icon,
   SunIcon,
@@ -12,7 +12,9 @@ import {
 import type { MenuProps } from "ant-design-vue";
 import { computed, h, ref } from "vue";
 
-import { useAuthStore } from "@/stores/auth.store.ts";
+import { ThemeType } from "@/core/constants/enums/themeType.enum";
+import { useAppMetadataStore } from "@/stores/appMetadata.store";
+import { useAuthStore } from "@/stores/auth.store";
 
 const selectedKeys = ref([]);
 const openKeys = ref([]);
@@ -32,6 +34,7 @@ const handleDropdownVisibleChange = (open: boolean) => {
 };
 
 const authStore = useAuthStore();
+const appMetadataStore = useAppMetadataStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
 
 const items = computed(() => [
@@ -63,15 +66,15 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
       break;
 
     case "light_theme":
-      alert("Tema claro selecionado!");
+      appMetadataStore.setTheme(ThemeType.LIGHT);
       break;
 
     case "dark_theme":
-      alert("Tema escuro selecionado!");
+      appMetadataStore.setTheme(ThemeType.DARK);
       break;
 
     case "browser_theme":
-      alert("Tema do navegador selecionado!");
+      appMetadataStore.setTheme(ThemeType.SYSTEM);
       break;
 
     case "logout":
@@ -133,6 +136,7 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
 </style>
 
 <style lang="scss">
+// TODO: Resolve the issue with scoped styles not applying to Ant Design Vue components
 .ant-dropdown-menu-item-icon,
 .ant-dropdown-menu-submenu-title > svg {
   width: var(--font-size-base);
