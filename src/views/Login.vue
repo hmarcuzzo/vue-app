@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 import { useAuth } from "@/composables/useAuth";
 import { RoutesName } from "@/core/constants/enums/routes.enum";
 import type { LoginForm, ValidateErrorEntity } from "@/core/interfaces/loginForm.interface";
-import { DEFAULT_SCROLL_OPTIONS, scrollIntoView } from "@/core/utils/scroll.util";
+import { DEFAULT_SCROLL_OPTIONS, scrollIntoView } from "@/core/utils/dom.util";
 import { useAuthStore } from "@/stores/auth.store";
 
 const router = useRouter();
