@@ -1,0 +1,22 @@
+@use "@/assets/scss/abstracts/colours" as c;
+
+:root[data-theme='dark'] {
+  // Accent Colors
+  --color-accent: #{c.$accent};
+  --color-accent-dark: #{c.$accent-dark};
+
+  // Text Colors
+  --color-text-primary: #{c.$text-light};
+
+  // Background Colors
+  --color-bg-primary: #{c.$bg-dark};
+
+  // Border Colors
+  --color-border: #{c.$border-light};
+
+  // Status Colors
+  --color-success: #{c.$success};
+  --color-warning: #{c.$warning};
+  --color-error: #{c.$error-light};
+  --color-info: #{c.$info};
+}

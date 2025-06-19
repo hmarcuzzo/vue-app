@@ -21,12 +21,10 @@
   // Background Colors
   --color-bg-primary: #{c.$bg-primary};
   --color-bg-secondary: #{c.$bg-secondary};  // Light background
-  --color-bg-dark: #{c.$bg-dark};  // Dark background
   --color-bg-grey:  #{c.$bg-grey};  // Default grey color for backgrounds
 
   // Border Colors
   --color-border: #{c.$border};  // Using primary-dark with opacity
-  --color-border-dark: #{c.$border-dark};  // Using primary-dark with opacity
 
   // Status Colors
   --color-success: #{c.$success};
