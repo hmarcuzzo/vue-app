@@ -3,13 +3,15 @@ import { onMounted } from "vue";
 
 import AppFooter from "@/components/base/AppFooter.vue";
 import AppHeader from "@/components/base/AppHeader/AppHeader.vue";
-import { themeConfig } from "@/core/config/theme.config";
+import { useThemeConfig } from "@/core/config/theme.config";
 import { useAppMetadataStore } from "@/stores/appMetadata.store";
 
 const appMetadataStore = useAppMetadataStore();
 onMounted(() => {
   appMetadataStore.initTheme();
 });
+
+const { themeConfig } = useThemeConfig();
 </script>
 
 <template>
