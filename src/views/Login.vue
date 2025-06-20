@@ -206,4 +206,11 @@ $sign-in-max-width: 400px;
     cursor: pointer;
   }
 }
+
+:root[data-theme="dark"] .ant-input-password-icon {
+  &:hover,
+  &:focus {
+    color: var(--color-text-light);
+  }
+}
 </style>
