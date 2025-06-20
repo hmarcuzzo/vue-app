@@ -45,6 +45,7 @@ const items = computed(() => [
     label: "Theme",
     title: "Theme",
     expandIcon: () => h(ChevronRightIcon),
+    popupClassName: "settings-dropdown-submenu",
     children: [
       { key: "light_theme", icon: () => h(SunIcon), label: "Light", title: "Light" },
       { key: "dark_theme", icon: () => h(MoonIcon), label: "Dark", title: "Dark" },
@@ -85,7 +86,7 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
 </script>
 
 <template>
-  <a-dropdown trigger="['click']" @visibleChange="handleDropdownVisibleChange">
+  <a-dropdown trigger="['click']" overlay-class-name="settings-dropdown" @visibleChange="handleDropdownVisibleChange">
     <a-tooltip title="Settings" :open="showTooltip">
       <a-button
         type="text"
@@ -97,7 +98,7 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
       </a-button>
     </a-tooltip>
     <template #overlay>
-      <div class="custom-dropdown-overlay">
+      <div class="settings-dropdown-overlay">
         <a-menu
           v-model:openKeys="openKeys"
           v-model:selectedKeys="selectedKeys"
@@ -124,7 +125,7 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
   color: var(--color-text-light);
 }
 
-.custom-dropdown-overlay {
+.settings-dropdown-overlay {
   min-width: 220px;
 
   :deep(.ant-dropdown-menu-submenu-title) {
@@ -136,16 +137,18 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
 </style>
 
 <style lang="scss">
-// TODO: Resolve the issue with scoped styles not applying to Ant Design Vue components
-.ant-dropdown-menu-item-icon,
-.ant-dropdown-menu-submenu-title > svg {
-  width: var(--font-size-base);
-  height: var(--font-size-base);
-}
+.settings-dropdown,
+.settings-dropdown-submenu {
+  .ant-dropdown-menu-item-icon,
+  .ant-dropdown-menu-submenu-title > svg {
+    width: var(--font-size-base);
+    height: var(--font-size-base);
+  }
 
-.ant-dropdown-menu-sub {
-  min-width: 190px;
-  margin: 0 !important;
-  padding: 0 !important;
+  .ant-dropdown-menu-sub {
+    min-width: 190px;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 }
 </style>
