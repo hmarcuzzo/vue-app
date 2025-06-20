@@ -204,6 +204,10 @@ $sign-in-max-width: 400px;
   &:focus {
     color: var(--color-grey);
     cursor: pointer;
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
   }
 }
 
