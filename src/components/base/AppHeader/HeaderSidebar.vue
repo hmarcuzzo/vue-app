@@ -9,17 +9,17 @@ const appMetadataStore = useAppMetadataStore();
 const authStore = useAuthStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
 
-const toggleCollapsed = () => {
-  appMetadataStore.toggleMenuCollapsed();
+const toggleMenuState = () => {
+  appMetadataStore.toggleMenuState();
 };
 </script>
 
 <template>
   <template v-if="isLoggedIn">
-    <a-button type="text" size="small" @click="toggleCollapsed" class="header-sidebar-btn">
+    <a-button type="text" size="small" @click="toggleMenuState" class="header-sidebar-btn">
       <transition name="fade-scale">
-        <MenuUnfoldOutlined v-if="appMetadataStore.menuCollapsed" key="unfold" class="header-sidebar-icon" />
-        <MenuFoldOutlined v-else key="fold" class="header-sidebar-icon" />
+        <MenuFoldOutlined v-if="appMetadataStore.menuExpanded" key="fold" class="header-sidebar-icon" />
+        <MenuUnfoldOutlined v-else key="unfold" class="header-sidebar-icon" />
       </transition>
     </a-button>
   </template>

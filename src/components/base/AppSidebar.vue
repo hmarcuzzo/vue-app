@@ -115,12 +115,12 @@ watch(
 
 <template>
   <template v-if="isLoggedIn">
-    <div class="sidebar-container" :aria-collapsed="appMetadataStore.menuCollapsed">
+    <div class="sidebar-container" :aria-expanded="!appMetadataStore.menuExpanded">
       <a-menu
         v-model:openKeys="state.openKeys"
         v-model:selectedKeys="state.selectedKeys"
         mode="inline"
-        :inline-collapsed="appMetadataStore.menuCollapsed"
+        :inline-collapsed="appMetadataStore.menuExpanded"
         :items="items"
       ></a-menu>
     </div>
@@ -136,7 +136,7 @@ watch(
     max-width 0.2s;
 }
 
-.sidebar-container[aria-collapsed="true"] {
+.sidebar-container[aria-expanded="false"] {
   flex: 0 0 64px;
 }
 </style>
