@@ -32,3 +32,8 @@
   --color-error: #{c.$error};
   --color-info: #{c.$info};
 }
+
+body {
+  color: var(--color-grey);
+  background-color: var(--color-bg-primary);
+}

@@ -20,3 +20,7 @@
   --color-error: #{c.$error-light};
   --color-info: #{c.$info};
 }
+
+:root[data-theme="dark"] body {
+  color: var(--color-text-primary);
+}
