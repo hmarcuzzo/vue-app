@@ -5,7 +5,7 @@ import { useThemeConfig } from "@/core/config/theme.config";
 import { useAppMetadataStore } from "@/stores/appMetadata.store";
 
 const appMetadataStore = useAppMetadataStore();
-appMetadataStore.initTheme();
+appMetadataStore.initAppMetadata();
 
 const { themeConfig } = useThemeConfig();
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  ArrowLeftStartOnRectangleIcon,
+  ArrowRightStartOnRectangleIcon,
   ChevronRightIcon,
   Cog6ToothIcon,
   MoonIcon,
@@ -55,7 +55,7 @@ const items = computed(() => [
   ...(isLoggedIn.value
     ? [
         { type: "divider" },
-        { key: "logout", icon: () => h(ArrowLeftStartOnRectangleIcon), label: "Logout", title: "Logout" },
+        { key: "logout", icon: () => h(ArrowRightStartOnRectangleIcon), label: "Logout", title: "Logout" },
       ]
     : []),
 ]);
@@ -90,6 +90,7 @@ const handleClick: MenuProps["onClick"] = async (menuInfo) => {
     <a-tooltip title="Settings" :open="showTooltip">
       <a-button
         type="text"
+        size="small"
         class="header-settings-btn"
         @mouseenter="handleButtonMouseEnter"
         @mouseleave="handleButtonMouseLeave"

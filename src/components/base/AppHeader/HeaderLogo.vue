@@ -11,7 +11,7 @@ async function goHome() {
 </script>
 
 <template>
-  <a-button type="text" class="header-logo" @click="goHome">ERP Identity</a-button>
+  <a-button type="text" size="small" class="header-logo" @click="goHome">ERP Identity</a-button>
 </template>
 
 <style scoped lang="scss">

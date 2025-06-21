@@ -4,11 +4,13 @@ import { ThemeType } from "@/core/constants/enums/themeType.enum";
 
 interface AppMetadataState {
   theme: ThemeType;
+  menuCollapsed: boolean;
 }
 
 export const useAppMetadataStore = defineStore("appMetadata", {
   state: (): AppMetadataState => ({
     theme: ThemeType.LIGHT,
+    menuCollapsed: false,
   }),
 
   getters: {
@@ -18,29 +20,14 @@ export const useAppMetadataStore = defineStore("appMetadata", {
       }
       return state.theme === ThemeType.DARK;
     },
-    isLightTheme(state: AppMetadataState): boolean {
-      if (state.theme === ThemeType.SYSTEM) {
-        return !window.matchMedia(`(prefers-color-scheme: ${ThemeType.DARK})`).matches;
-      }
-      return state.theme === ThemeType.LIGHT;
-    },
-    isSystemTheme(state: AppMetadataState): boolean {
-      return state.theme === ThemeType.SYSTEM;
-    },
   },
 
   actions: {
-    setTheme(theme: ThemeType): void {
-      this.theme = theme;
-      if (theme === ThemeType.SYSTEM) {
-        const prefersDark = window.matchMedia(`(prefers-color-scheme: ${ThemeType.DARK})`).matches;
-        document.documentElement.setAttribute("data-theme", prefersDark ? ThemeType.DARK : ThemeType.LIGHT);
-      } else {
-        document.documentElement.setAttribute("data-theme", theme);
-      }
+    initAppMetadata(): void {
+      this._initTheme();
     },
 
-    initTheme(): void {
+    _initTheme(): void {
       if (this.theme === ThemeType.DARK || this.theme === ThemeType.LIGHT || this.theme === ThemeType.SYSTEM) {
         this.setTheme(this.theme);
       } else {
@@ -52,6 +39,20 @@ export const useAppMetadataStore = defineStore("appMetadata", {
           document.documentElement.setAttribute("data-theme", e.matches ? ThemeType.DARK : ThemeType.LIGHT);
         }
       });
+    },
+
+    setTheme(theme: ThemeType): void {
+      this.theme = theme;
+      if (theme === ThemeType.SYSTEM) {
+        const prefersDark = window.matchMedia(`(prefers-color-scheme: ${ThemeType.DARK})`).matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? ThemeType.DARK : ThemeType.LIGHT);
+      } else {
+        document.documentElement.setAttribute("data-theme", theme);
+      }
+    },
+
+    toggleMenuCollapsed(): void {
+      this.menuCollapsed = !this.menuCollapsed;
     },
   },
 

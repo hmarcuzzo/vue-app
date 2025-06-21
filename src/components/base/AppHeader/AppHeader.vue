@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import HeaderLogo from "@/components/base/AppHeader/HeaderLogo.vue";
+import HeaderMenu from "@/components/base/AppHeader/HeaderMenu.vue";
 import HeaderSettings from "@/components/base/AppHeader/HeaderSettings.vue";
 </script>
 
 <template>
   <header class="app-header">
     <div class="header-content">
-      <HeaderLogo></HeaderLogo>
+      <div class="header-left">
+        <HeaderMenu></HeaderMenu>
+        <HeaderLogo></HeaderLogo>
+      </div>
 
       <ul class="header-links">
         <HeaderSettings></HeaderSettings>
@@ -27,6 +31,11 @@ import HeaderSettings from "@/components/base/AppHeader/HeaderSettings.vue";
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1.5rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
 }
 
 .header-links {
