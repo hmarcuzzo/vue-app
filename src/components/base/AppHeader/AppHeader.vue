@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import HeaderLogo from "@/components/base/AppHeader/HeaderLogo.vue";
-import HeaderMenu from "@/components/base/AppHeader/HeaderMenu.vue";
 import HeaderSettings from "@/components/base/AppHeader/HeaderSettings.vue";
+import HeaderSidebar from "@/components/base/AppHeader/HeaderSidebar.vue";
 </script>
 
 <template>
   <header class="app-header">
     <div class="header-content">
       <div class="header-left">
-        <HeaderMenu></HeaderMenu>
+        <HeaderSidebar></HeaderSidebar>
         <HeaderLogo></HeaderLogo>
       </div>
 

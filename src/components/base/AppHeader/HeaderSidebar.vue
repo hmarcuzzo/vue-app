@@ -16,23 +16,23 @@ const toggleCollapsed = () => {
 
 <template>
   <template v-if="isLoggedIn">
-    <a-button type="text" size="small" @click="toggleCollapsed" class="header-menu-btn">
+    <a-button type="text" size="small" @click="toggleCollapsed" class="header-sidebar-btn">
       <transition name="fade-scale">
-        <MenuUnfoldOutlined v-if="appMetadataStore.menuCollapsed" key="unfold" class="header-menu-icon" />
-        <MenuFoldOutlined v-else key="fold" class="header-menu-icon" />
+        <MenuUnfoldOutlined v-if="appMetadataStore.menuCollapsed" key="unfold" class="header-sidebar-icon" />
+        <MenuFoldOutlined v-else key="fold" class="header-sidebar-icon" />
       </transition>
     </a-button>
   </template>
 </template>
 
 <style scoped lang="scss">
-.header-menu-btn {
+.header-sidebar-btn {
   display: flex;
   align-items: center;
   padding: 0;
 }
 
-.header-menu-icon {
+.header-sidebar-icon {
   width: var(--font-size-2xl);
   height: var(--font-size-2xl);
   color: var(--color-text-light);

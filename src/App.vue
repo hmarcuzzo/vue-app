@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppFooter from "@/components/base/AppFooter.vue";
 import AppHeader from "@/components/base/AppHeader/AppHeader.vue";
+import AppSidebar from "@/components/base/AppSidebar.vue";
 import { useThemeConfig } from "@/core/config/theme.config";
 import { useAppMetadataStore } from "@/stores/appMetadata.store";
 
@@ -14,8 +15,11 @@ const { themeConfig } = useThemeConfig();
   <a-config-provider :theme="themeConfig">
     <div class="app-container">
       <AppHeader />
-      <main>
-        <router-view />
+      <main class="main-layout">
+        <AppSidebar />
+        <div class="main-content">
+          <router-view />
+        </div>
       </main>
       <AppFooter />
     </div>
@@ -29,6 +33,14 @@ const { themeConfig } = useThemeConfig();
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-bg-primary);
+}
+
+.main-layout {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.main-content {
+  flex: 1;
 }
 </style>

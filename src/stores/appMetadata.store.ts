@@ -10,7 +10,7 @@ interface AppMetadataState {
 export const useAppMetadataStore = defineStore("appMetadata", {
   state: (): AppMetadataState => ({
     theme: ThemeType.LIGHT,
-    menuCollapsed: false,
+    menuCollapsed: true,
   }),
 
   getters: {
