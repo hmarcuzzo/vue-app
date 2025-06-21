@@ -22,9 +22,9 @@ async function goHome() {
 
 <style scoped lang="scss">
 .not-found-container {
-  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 </style>
