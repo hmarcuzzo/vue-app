@@ -42,5 +42,8 @@ const { themeConfig } = useThemeConfig();
 
 .main-content {
   flex: 1;
+  margin: 24px 24px 48px 24px;
+  //overflow-y: auto;
+  //scrollbar-width: none;
 }
 </style>
