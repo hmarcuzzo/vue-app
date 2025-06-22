@@ -23,6 +23,9 @@ import HeaderSidebar from "@/components/base/AppHeader/HeaderSidebar.vue";
 .app-header {
   width: 100%;
   background: var(--color-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .header-content {
