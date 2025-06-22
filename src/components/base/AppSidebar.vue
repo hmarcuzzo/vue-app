@@ -115,12 +115,12 @@ watch(
 
 <template>
   <template v-if="isLoggedIn">
-    <div class="sidebar-container" :aria-expanded="!appMetadataStore.menuExpanded">
+    <div class="sidebar-container" :aria-expanded="!appMetadataStore.menuCollapsed">
       <a-menu
         v-model:openKeys="state.openKeys"
         v-model:selectedKeys="state.selectedKeys"
         mode="inline"
-        :inline-collapsed="appMetadataStore.menuExpanded"
+        :inline-collapsed="appMetadataStore.menuCollapsed"
         :items="items"
       ></a-menu>
     </div>

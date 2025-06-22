@@ -4,13 +4,13 @@ import { ThemeType } from "@/core/constants/enums/themeType.enum";
 
 interface AppMetadataState {
   theme: ThemeType;
-  menuExpanded: boolean;
+  menuCollapsed: boolean;
 }
 
 export const useAppMetadataStore = defineStore("appMetadata", {
   state: (): AppMetadataState => ({
     theme: ThemeType.LIGHT,
-    menuExpanded: false,
+    menuCollapsed: false,
   }),
 
   getters: {
@@ -52,7 +52,7 @@ export const useAppMetadataStore = defineStore("appMetadata", {
     },
 
     toggleMenuState(): void {
-      this.menuExpanded = !this.menuExpanded;
+      this.menuCollapsed = !this.menuCollapsed;
     },
   },
 

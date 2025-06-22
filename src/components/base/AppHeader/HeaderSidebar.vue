@@ -18,8 +18,8 @@ const toggleMenuState = () => {
   <template v-if="isLoggedIn">
     <a-button type="text" size="small" @click="toggleMenuState" class="header-sidebar-btn">
       <transition name="fade-scale">
-        <MenuFoldOutlined v-if="appMetadataStore.menuExpanded" key="fold" class="header-sidebar-icon" />
-        <MenuUnfoldOutlined v-else key="unfold" class="header-sidebar-icon" />
+        <MenuUnfoldOutlined v-if="appMetadataStore.menuCollapsed" key="unfold" class="header-sidebar-icon" />
+        <MenuFoldOutlined v-else key="fold" class="header-sidebar-icon" />
       </transition>
     </a-button>
   </template>
