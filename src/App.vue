@@ -49,11 +49,11 @@ const { themeConfig } = useThemeConfig();
 
 @media (min-width: $breakpoint-desktop-large) {
   .app-container:has(.sidebar-container[aria-expanded="false"]) .main-layout {
-    margin-left: 80px;
+    margin-left: calc($collapsed-sidebar-width - 8px);
   }
 
   .app-container:has(.sidebar-container[aria-expanded="true"]) .main-layout {
-    margin-left: 252px;
+    margin-left: $expanded-sidebar-width;
   }
 }
 </style>
