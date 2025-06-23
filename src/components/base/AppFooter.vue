@@ -1,20 +1,30 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
+import { useAuthStore } from "@/stores/auth.store.ts";
+
+const authStore = useAuthStore();
+
+const isLoggedIn = computed(() => authStore.isAuthenticated);
+
 const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="app-footer">
-    <div class="footer-container">
-      <div class="footer-content">
-        <a-typography-text class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</a-typography-text>
-        <nav class="footer-links">
-          <a-typography-link href="#" target="_blank">Privacy Policy</a-typography-link>
-          <a-typography-link href="#" target="_blank">Terms of Service</a-typography-link>
-          <a-typography-link href="#" target="_blank">Contact</a-typography-link>
-        </nav>
+  <template v-if="!isLoggedIn">
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <a-typography-text class="copyright">© {{ currentYear }} NexyTech. All rights reserved.</a-typography-text>
+          <nav class="footer-links">
+            <a-typography-link href="#" target="_blank">Privacy Policy</a-typography-link>
+            <a-typography-link href="#" target="_blank">Terms of Service</a-typography-link>
+            <a-typography-link href="#" target="_blank">Contact</a-typography-link>
+          </nav>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </template>
 </template>
 
 <style lang="scss" scoped>
