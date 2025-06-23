@@ -23,6 +23,9 @@
   --color-bg-secondary: #{c.$bg-secondary};  // Light background
   --color-bg-grey:  #{c.$bg-grey};  // Default grey color for backgrounds
 
+  // Scrollbar Colors
+  --color-scrollbar-thumb: #{c.$scrollbar-thumb};  // Using primary-dark with opacity
+
   // Border Colors
   --color-border: #{c.$border};  // Using primary-dark with opacity
 

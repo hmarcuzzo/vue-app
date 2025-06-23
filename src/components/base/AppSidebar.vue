@@ -103,6 +103,126 @@ const items = reactive([
       },
     ],
   },
+  {
+    key: "1",
+    icon: () => h(PieChartOutlined),
+    label: "Option 1",
+    title: "Option 1",
+  },
+  {
+    key: "2",
+    icon: () => h(DesktopOutlined),
+    label: "Option 2",
+    title: "Option 2",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "1",
+    icon: () => h(PieChartOutlined),
+    label: "Option 1",
+    title: "Option 1",
+  },
+  {
+    key: "2",
+    icon: () => h(DesktopOutlined),
+    label: "Option 2",
+    title: "Option 2",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "1",
+    icon: () => h(PieChartOutlined),
+    label: "Option 1",
+    title: "Option 1",
+  },
+  {
+    key: "2",
+    icon: () => h(DesktopOutlined),
+    label: "Option 2",
+    title: "Option 2",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "1",
+    icon: () => h(PieChartOutlined),
+    label: "Option 1",
+    title: "Option 1",
+  },
+  {
+    key: "2",
+    icon: () => h(DesktopOutlined),
+    label: "Option 2",
+    title: "Option 2",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "1",
+    icon: () => h(PieChartOutlined),
+    label: "Option 1",
+    title: "Option 1",
+  },
+  {
+    key: "2",
+    icon: () => h(DesktopOutlined),
+    label: "Option 2",
+    title: "Option 2",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
+  {
+    key: "3",
+    icon: () => h(InboxOutlined),
+    label: "Option 3",
+    title: "Option 3",
+  },
 ]);
 
 watch(
@@ -129,14 +249,30 @@ watch(
 
 <style scoped lang="scss">
 .sidebar-container {
-  display: flex;
-  flex: 0 0 260px;
-  transition:
-    width 0.2s,
-    max-width 0.2s;
+  position: fixed;
+  top: 40px;
+  height: calc(100% - 40px);
+  width: 260px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 10;
 }
 
 .sidebar-container[aria-expanded="false"] {
-  flex: 0 0 64px;
+  display: none;
+  width: 88px;
+
+  @media (min-width: $breakpoint-desktop-large) {
+    display: block;
+  }
+}
+
+.sidebar-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-container:hover::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+  border-radius: $border-radius-sm;
 }
 </style>

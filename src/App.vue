@@ -15,8 +15,9 @@ const { themeConfig } = useThemeConfig();
   <a-config-provider :theme="themeConfig">
     <div class="app-container">
       <AppHeader />
+
+      <AppSidebar />
       <main class="main-layout">
-        <AppSidebar />
         <div class="main-content">
           <router-view />
         </div>
@@ -38,12 +39,21 @@ const { themeConfig } = useThemeConfig();
 .main-layout {
   display: flex;
   flex: 1 1 auto;
+  margin-left: 0;
 }
 
 .main-content {
   flex: 1;
-  margin: 24px 24px 48px 24px;
-  //overflow-y: auto;
-  //scrollbar-width: none;
+  margin: 48px 24px;
+}
+
+@media (min-width: $breakpoint-desktop-large) {
+  .app-container:has(.sidebar-container[aria-expanded="false"]) .main-layout {
+    margin-left: 80px;
+  }
+
+  .app-container:has(.sidebar-container[aria-expanded="true"]) .main-layout {
+    margin-left: 252px;
+  }
 }
 </style>

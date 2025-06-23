@@ -26,6 +26,8 @@ import HeaderSidebar from "@/components/base/AppHeader/HeaderSidebar.vue";
   position: sticky;
   top: 0;
   z-index: 10;
+  height: 40px;
+  max-height: 40px;
 }
 
 .header-content {
@@ -34,6 +36,7 @@ import HeaderSidebar from "@/components/base/AppHeader/HeaderSidebar.vue";
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1.5rem;
+  height: 100%;
 }
 
 .header-left {
