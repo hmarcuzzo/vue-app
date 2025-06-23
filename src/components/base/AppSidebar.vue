@@ -1,26 +1,29 @@
 <script setup lang="ts">
 import { HomeIcon } from "@heroicons/vue/24/outline";
-import { reactive, watch, h, computed } from "vue";
+import { reactive, watch, computed, h, watchEffect } from "vue";
+import { useRouter } from "vue-router";
 
+import { RoutesName } from "@/core/constants/enums/routes.enum.ts";
 import { useAppMetadataStore } from "@/stores/appMetadata.store.ts";
 import { useAuthStore } from "@/stores/auth.store.ts";
 
 const authStore = useAuthStore();
 const appMetadataStore = useAppMetadataStore();
 const isLoggedIn = computed(() => authStore.isAuthenticated);
+const router = useRouter();
 
 const state = reactive({
-  selectedKeys: ["1"],
-  openKeys: ["sub1"],
-  preOpenKeys: ["sub1"],
+  selectedKeys: [] as Array<string | symbol>,
+  openKeys: [] as Array<string | symbol>,
+  preOpenKeys: [] as Array<string | symbol>,
 });
 
 const items = reactive([
   {
-    key: "home",
+    key: RoutesName.HOME,
     icon: () => h(HomeIcon),
-    label: "Home",
-    title: "Home",
+    label: RoutesName.HOME,
+    title: RoutesName.HOME,
   },
 ]);
 
@@ -30,6 +33,19 @@ watch(
     state.preOpenKeys = oldVal;
   },
 );
+
+watchEffect(() => {
+  const currentRoute = router.currentRoute.value;
+  state.selectedKeys = [currentRoute.name || ""];
+
+  const selectedKey = state.selectedKeys[0];
+  const parentItem = items.find((item) => item.children?.some((child) => child.key === selectedKey));
+
+  if (parentItem) {
+    state.openKeys = [parentItem.key];
+    state.preOpenKeys = [parentItem.key];
+  }
+});
 </script>
 
 <template>
@@ -85,15 +101,38 @@ watch(
   .ant-menu-item {
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    > svg {
+    > svg,
+    .ant-menu-item-icon {
       width: var(--font-size-2xl);
       height: var(--font-size-2xl);
     }
+
+    .ant-menu-title-content {
+      color: var(--color-text-primary);
+
+      opacity: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      transition:
+        opacity 0.2s ease,
+        max-width 0.2s ease;
+    }
   }
 
-  .ant-menu-title-content {
-    color: var(--color-text-primary);
+  &[aria-expanded="false"] .ant-menu-item {
+    .ant-menu-item-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &[aria-expanded="false"] .ant-menu-title-content {
+    max-width: 0;
+    opacity: 0;
   }
 }
 </style>
