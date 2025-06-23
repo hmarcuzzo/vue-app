@@ -55,7 +55,7 @@ const items = computed(() => [
   ...(isLoggedIn.value
     ? [
         { type: "divider" },
-        { key: "logout", icon: () => h(ArrowRightStartOnRectangleIcon), label: "Logout", title: "Logout" },
+        { key: "sign_out", icon: () => h(ArrowRightStartOnRectangleIcon), label: "Sign Out", title: "Sign Out" },
       ]
     : []),
 ]);
